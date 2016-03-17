@@ -29,54 +29,57 @@ class GridPegSolitairePuzzle(Puzzle):
     # __repr__ is up to you
 
     def extensions(self):
-        marker, marker_set = self.marker, self.marker_set
+        marker, marker_set = self._marker, self._marker_set
 
-        pegs = {} # dictionary of tuples representing pegs on board, each with a list of directions
+        pegs = {}  # dictionary of tuples representing pegs on board,
+        # each with a list of directions
 
-        for i in len(marker): #finds the pegs
-            for j in len(marker[i]):
+        for i in range(len(marker)): # finds the pegs
+            for j in range(len(marker[i])):
                 if marker[i][j] == "*":
                     pegs[(i, j)] = []
 
         for p in pegs: # for each peg, find movable directions
 
             if p[1] - 2 >= 0 and marker[p[0]][p[1] - 1] == "*" and marker[p[0]][p[1] - 2] == ".":
-                pegs(p).append("left") # peg can move left
+                pegs[p].append("left")  # peg can move left
 
             if p[1] + 2 <= len(marker[0]) and marker[p[0]][p[1] + 1] == "*" and marker[p[0]][p[1] + 2] == ".":
-                pegs(p).append("right") # peg can move right
+                pegs[p].append("right")  # peg can move right
 
             if p[0] - 2 >= 0 and marker[p[0] - 1][p[1]] == "*" and marker[p[0] - 2][p[1] - 2] == ".":
-                pegs(p).append("up") # peg can move up
+                pegs[p].append("up")  # peg can move up
 
             if p[0] + 2 <= len(marker) and marker[p[0] + 1][p[1]] == "*" and marker[p[0] + 2][p[1] - 2] == ".":
-                pegs(p).append("down") # peg can move down
+                pegs[p].append("down")  # peg can move down
 
-        def create_new_grid(marker, coord, direction):
+        def create_new_grid(chart, coord, direction):
 
             if direction == "left":
-                marker[coord[0]][coord[0]] = "." # jumping peg's spot is emptied
-                marker[coord[0]][coord[1] - 1] = "." # emptied
-                marker[coord[0]][coord[1] - 2] = "*" # peg moves here
+                chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
+                chart[coord[0]][coord[1] - 1] = "."  # emptied
+                chart[coord[0]][coord[1] - 2] = "*"  # peg moves here
 
             elif direction == "right":
-                marker[coord[0]][coord[0]] = "." # jumping peg's spot is emptied
-                marker[coord[0]][coord[1] + 1] = "." # emptied
-                marker[coord[0]][coord[1] + 2] = "*" # peg moves here
+                chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
+                chart[coord[0]][coord[1] + 1] = "."  # emptied
+                chart[coord[0]][coord[1] + 2] = "*"  # peg moves here
 
             elif direction == "up":
-                marker[coord[0]][coord[0]] = "." # jumping peg's spot is emptied
-                marker[coord[0] - 1][coord[1]] = "." # emptied
-                marker[coord[0] - 2][coord[1]] = "*" # peg moves here
+                chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
+                chart[coord[0] - 1][coord[1]] = "."  # emptied
+                chart[coord[0] - 2][coord[1]] = "*"  # peg moves here
 
             elif direction == "down":
-                marker[coord[0]][coord[0]] = "." # jumping peg's spot is emptied
-                marker[coord[0] + 1][coord[1]] = "." # emptied
-                marker[coord[0] + 2][coord[1]] = "*" # peg moves here
+                chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
+                chart[coord[0] + 1][coord[1]] = "."  # emptied
+                chart[coord[0] + 2][coord[1]] = "*"  # peg moves here
 
             return marker
 
-        return ([GridPegSolitairePuzzle(create_new_grid(marker, p, d), marker_set) for p in pegs for d in pegs[p]])
+        return [GridPegSolitairePuzzle
+                (create_new_grid(marker, p, d), marker_set)
+                for p in pegs for d in pegs[p]]
 
     # TODO
     # override extensions

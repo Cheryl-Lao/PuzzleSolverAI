@@ -29,6 +29,25 @@ class MNPuzzle(Puzzle):
     # implement __eq__ and __str__
     # __repr__ is up to you
 
+    def extensions(self):
+
+        extensions = []
+        # A tuple for the location of the
+        swap_spot = self.find_coordinates("*")
+
+        commands = ["swap_spot[0] += 1", "swap_spot[0] -= 1",
+                    "swap_spot[1] += 1", "swap_spot[1] -= 1"]
+
+        for command in commands:
+
+            copied_grid = self[:]
+            eval(command)
+            new_spot = swap_spot
+            copied_grid.swap_positions(copied_grid.m, copied_grid.n, new_spot[0], new_spot[1])
+
+            if copied_grid is not None:
+                extensions.append(copied_grid)
+
     # TODO
     # override extensions
     # legal extensions are configurations that can be reached by swapping one
@@ -37,7 +56,50 @@ class MNPuzzle(Puzzle):
     # TODO
     # override is_solved
     # a configuration is solved when from_grid is the same as to_grid
+    def swap_positions(self, x1, y1, x2, y2):
+        """
+        Return an MN puzzle where the object at (x1, y1) is switched with the
+        object at (x2, y2) in its from_grid. If this is not possible, return None
 
+        :param x1:
+        :type x1:
+        :param y1:
+        :type y1:
+        :param x2:
+        :type x2:
+        :param y2:
+        :type y2:
+        :return:
+        :rtype:
+        """
+
+        starter_grid = list(self.from_grid)[:]
+        max_x = self.m - 1
+        max_y = self.n - 1
+
+        if x1 >= max_x or y1>= max_y or x2 >= max_x or y2 >= max_y:
+            return None
+
+        starter_grid[x1][y1] , starter_grid[x2][y2] = \
+            starter_grid[x2][y2], starter_grid[x1][y1]
+
+        starter_grid = tuple(starter_grid)
+
+        return MNPuzzle(starter_grid, self.to_grid)
+
+    def find_coordinates(self, obj):
+        """
+
+        :param obj:
+        :type obj:
+        :return:
+        :rtype:
+        """
+        for i in range (self.m):
+            for j in range (self.n):
+                if self.from_grid[i][j] == obj:
+                    return [i, j]
+        return "error: object not in grid"
 
 if __name__ == "__main__":
     import doctest
