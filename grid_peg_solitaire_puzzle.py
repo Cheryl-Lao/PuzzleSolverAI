@@ -53,38 +53,40 @@ class GridPegSolitairePuzzle(Puzzle):
             if p[0] + 2 <= len(marker) and marker[p[0] + 1][p[1]] == "*" and marker[p[0] + 2][p[1] - 2] == ".":
                 pegs[p].append("down")  # peg can move down
 
-        def create_new_grid(chart, coord, direction):
+        charts = [self.create_new_grid(p, d) for p in pegs for d in pegs[p]]
 
-            if direction == "left":
-                chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
-                chart[coord[0]][coord[1] - 1] = "."  # emptied
-                chart[coord[0]][coord[1] - 2] = "*"  # peg moves here
+        return [GridPegSolitairePuzzle(c, marker_set) for c in charts]
 
-            elif direction == "right":
-                chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
-                chart[coord[0]][coord[1] + 1] = "."  # emptied
-                chart[coord[0]][coord[1] + 2] = "*"  # peg moves here
-
-            elif direction == "up":
-                chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
-                chart[coord[0] - 1][coord[1]] = "."  # emptied
-                chart[coord[0] - 2][coord[1]] = "*"  # peg moves here
-
-            elif direction == "down":
-                chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
-                chart[coord[0] + 1][coord[1]] = "."  # emptied
-                chart[coord[0] + 2][coord[1]] = "*"  # peg moves here
-
-            return marker
-
-        return [GridPegSolitairePuzzle
-                (create_new_grid(marker, p, d), marker_set)
-                for p in pegs for d in pegs[p]]
 
     # TODO
     # override extensions
     # legal extensions consist of all configurations that can be reached by
     # making a single jump from this configuration
+
+    def create_new_grid(self, coord, direction):
+        chart = self._marker
+
+        if direction == "left":
+            chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
+            chart[coord[0]][coord[1] - 1] = "."  # emptied
+            chart[coord[0]][coord[1] - 2] = "*"  # peg moves here
+
+        elif direction == "right":
+            chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
+            chart[coord[0]][coord[1] + 1] = "."  # emptied
+            chart[coord[0]][coord[1] + 2] = "*"  # peg moves here
+
+        elif direction == "up":
+            chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
+            chart[coord[0] - 1][coord[1]] = "."  # emptied
+            chart[coord[0] - 2][coord[1]] = "*"  # peg moves here
+
+        elif direction == "down":
+            chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
+            chart[coord[0] + 1][coord[1]] = "."  # emptied
+            chart[coord[0] + 2][coord[1]] = "*"  # peg moves here
+
+        return chart
 
     def is_solved(self):
         # TODO
