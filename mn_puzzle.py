@@ -28,6 +28,61 @@ class MNPuzzle(Puzzle):
     # TODO
     # implement __eq__ and __str__
     # __repr__ is up to you
+    def __eq__(self, other):
+        """
+
+        Precondition: self and other are both rectangular grids
+
+        :return:
+        :rtype: str
+        """
+
+        if len(self.to_grid) != len(other.to_grid):
+            return False
+
+        for i in range(len(self.from_grid)):
+            for j in range (len(self.to_grid[i])):
+                if self.from_grid[i][j] != other.from_grid[i][j]:
+                    return False
+        return True
+
+    def __str__(self):
+        """
+
+        :return:
+        :rtype: str
+        """
+        result = ""
+        for row in self.to_grid:
+            for element in row:
+                result += str(element)
+                result += " "
+            result += "\n"
+
+        return result
+
+    def __repr__(self):
+        """
+
+        :return:
+        :rtype: str
+        """
+
+        result = "MNPuzzle(self, {}, {})".format(grid_string(self.from_grid), grid_string(self.to_grid))
+
+        return result
+
+
+def grid_string(grid):
+
+    result = ""
+    for row in grid:
+        for element in row:
+            result += str(element)
+            result += " "
+        result += "\n"
+
+        return result
 
     def extensions(self):
 

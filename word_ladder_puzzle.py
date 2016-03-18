@@ -26,7 +26,7 @@ class WordLadderPuzzle(Puzzle):
         # implement __eq__ and __str__
         # __repr__ is up to you
 
-        def extensions(self):
+    def extensions(self):
             """
             Return list of extensions
             # override extensions
@@ -53,16 +53,16 @@ class WordLadderPuzzle(Puzzle):
                         good_words.append(word)
             return ([WordLadderPuzzle(q, to_word, ws) for q in good_words])
 
-
-        def is_solved(self):
+    def is_solved(self):
             # TODO
         # override is_solved
         # this WordLadderPuzzle is solved when _from_word is the same as
         # _to_word
             return self._from_word == self._to_word
 
-        def __eq__(self, other):
+    def __eq__(self, other):
             return (type(other) == type(self) and self._from_word == other._from_word and self._to_word == other._to_word and self.chars == other.chars)
+
 
 if __name__ == '__main__':
     import doctest
