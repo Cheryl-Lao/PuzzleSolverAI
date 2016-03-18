@@ -27,31 +27,31 @@ class WordLadderPuzzle(Puzzle):
         # __repr__ is up to you
 
     def extensions(self):
-            """
-            Return list of extensions
-            # override extensions
-            # legal extensions are WordPadderPuzzles that have a from_word that can
-            # be reached from this one by changing a single letter to one of those
-            # in self._chars
-            :type self: Puzzle
-            :rtype: list[Puzzle]
-            """
-            # TODO
+        """
+        Return list of extensions
+        # override extensions
+        # legal extensions are WordPadderPuzzles that have a from_word that can
+        # be reached from this one by changing a single letter to one of those
+        # in self._chars
+        :type self: Puzzle
+        :rtype: list[Puzzle]
+        """
+        # TODO
 
-            good_words = []
-            from_word, to_word, ws, chars = self._from_word, self._to_word, self.ws, self.chars
+        good_words = []
+        from_word, to_word, ws, chars = self._from_word, self._to_word, self.ws, self.chars
 
-            if not self.is_solved():
-                word_list = []
+        if not self.is_solved():
+            word_list = []
 
-                for i in range(len(from_word)):
-                    word_list = [from_word[:i] + q + from_word[i + 1:] for q in chars]
+            for i in range(len(from_word)):
+                word_list = [from_word[:i] + q + from_word[i + 1:] for q in chars]
 
-                for word in word_list:
-                    # If the word is in the allowed words
-                    if word in ws:
-                        good_words.append(word)
-            return ([WordLadderPuzzle(q, to_word, ws) for q in good_words])
+            for word in word_list:
+                # If the word is in the allowed words
+                if word in ws:
+                    good_words.append(word)
+        return [WordLadderPuzzle(q, to_word, ws) for q in good_words]
 
     def is_solved(self):
             # TODO
