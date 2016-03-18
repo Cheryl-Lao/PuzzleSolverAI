@@ -65,6 +65,22 @@ class WordLadderPuzzle(Puzzle):
                 self._from_word == other._from_word and
                 self._to_word == other._to_word and
                 self.chars == other.chars)
+    
+    def __str__(self):
+        """
+
+        :rtype: str
+        """
+        return self._from_word + " --> " + self._to_word
+
+    def __repr__(self):
+        """
+        :return:
+        rtype: Str
+        """
+        #You may need to change str(self._word_set) to repr(self._word_set)
+        result = "WordLadderPuzzle({}, {}, {})".format(self._from_word, self._to_word, str(self._word_set))
+
 
 
 if __name__ == '__main__':
