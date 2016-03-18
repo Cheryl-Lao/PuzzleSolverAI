@@ -61,7 +61,10 @@ class WordLadderPuzzle(Puzzle):
             return self._from_word == self._to_word
 
     def __eq__(self, other):
-            return (type(other) == type(self) and self._from_word == other._from_word and self._to_word == other._to_word and self.chars == other.chars)
+        return (type(other) == type(self) and
+                self._from_word == other._from_word and
+                self._to_word == other._to_word and
+                self.chars == other.chars)
 
 
 if __name__ == '__main__':

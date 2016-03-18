@@ -158,7 +158,7 @@ class PuzzleNode:
         >>> pn2 = PuzzleNode(WordLadderPuzzle("on", "no", {"on", "oo", "no"}))
         >>> pn3 = PuzzleNode(WordLadderPuzzle("no", "on", {"on", "no", "oo"}))
         >>> pn1.__eq__(pn2)
-        False
+        True
         >>> pn1.__eq__(pn3)
         False
         """

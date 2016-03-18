@@ -68,21 +68,11 @@ class MNPuzzle(Puzzle):
         :rtype: str
         """
 
-        result = "MNPuzzle(self, {}, {})".format(grid_string(self.from_grid), grid_string(self.to_grid))
+        result = "MNPuzzle(self, {}, {})".format(Puzzle.grid_string(self.from_grid), Puzzle.grid_string(self.to_grid))
 
         return result
 
 
-def grid_string(grid):
-
-    result = ""
-    for row in grid:
-        for element in row:
-            result += str(element)
-            result += " "
-        result += "\n"
-
-        return result
 
     def extensions(self):
 

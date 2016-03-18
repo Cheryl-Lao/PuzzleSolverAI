@@ -95,10 +95,42 @@ class GridPegSolitairePuzzle(Puzzle):
         return pegs == 1
 
     def __str__(self):
+        """
+
+        :return:
+        :rtype: str
+        """
 
         return "\n".join(x for x in self._marker)
 
+    def __eq__(self, other):
+        """
 
+        :type other: GridPegSolitairePuzzle
+        :rtype: bool
+        """
+
+        if self.marker_set != other.marker_set:
+            return False
+
+        for i in range(len(self.marker)):
+            for j in range(len(self.marker[i])):
+                if self.marker[i][j] != other.marker[i][j]:
+                    return False
+
+        return True
+
+    def __repr__(self):
+        """
+
+        Return a string representation of self that can be used by
+        :return:
+        :rtype: str
+        """
+        marker_string = Puzzle.grid_string(self.marker)
+        marker_set = str(self.marker_set)
+
+        return "GridPegSolitairePuzzle(marker, marker_set)".format(marker_string)
 if __name__ == "__main__":
     import doctest
 
