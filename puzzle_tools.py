@@ -45,17 +45,33 @@ def depth_first_solve(puzzle):
     @rtype: PuzzleNode | None
     """
 
-    if puzzle.extensions():
-        # Check whether or not this is already a solution
-        if puzzle.is_solved():
+    seen = set()
+
+    return depth_helper(puzzle, seen)
+
+
+def depth_helper(puzzle, seen):
+    """
+    :param puzzle: Puzzle
+    :param seen: Set
+    :return: Puzzle | None
+    """
+
+    seen.add(puzzle)
+
+    if puzzle.is_solved():
             return puzzle
 
+    elif puzzle.fail_fast():
+        return None
+
+    if puzzle.extensions():
         # Look for solutions in each branch
         for child in puzzle.extensions():
             # This will return the first leaf that is not None
             # (so it's a solution) and exit the loop
-            if depth_first_solve(child) is not None:
-                return depth_first_solve(child)
+            if depth_helper(child, seen) is not None and child not in seen:
+                return depth_helper(child, seen)
     else:
         if puzzle.is_solved():
             return puzzle
@@ -83,25 +99,30 @@ def breadth_first_solve(puzzle):
     # TODO
     to_check = deque()
     to_check.add(puzzle)
+    seen = set()
 
     while to_check:
         puzzle_config = to_check.pop(0)
+        if puzzle_config.fail_fast():
+            return None
+        if puzzle_config not in seen:
+            # Check if the puzzle configuration is a solution
+            # and return it straight away if it is
+            if puzzle_config.is_solved():
+                return puzzle_config
 
-        # Check if the puzzle configuration is a solution
-        # and return it straight away if it is
-        if puzzle_config.is_solved():
-            return puzzle_config
-
-        if puzzle_config.extensions:
-            # If there are extensions add the children all at once to the queue
-            for extension in puzzle_config.extensions:
-                to_check.add(extension)
-
+            if puzzle_config.extensions:
+                # If there are extensions add the children all at once to the queue
+                for extension in puzzle_config.extensions:
+                    to_check.add(extension)
+            seen.add(puzzle_config)
     # If it gets to this line it means that there were no solutions found at all
     return None
 
 # Class PuzzleNode helps build trees of PuzzleNodes that have
 # an arbitrary number of children, and a parent.
+
+
 class PuzzleNode:
     """
     A Puzzle configuration that refers to other configurations that it
