@@ -45,7 +45,7 @@ def depth_first_solve(puzzle):
     @rtype: PuzzleNode | None
     """
 
-    seen = set()
+    seen = []
 
     return depth_helper(puzzle, seen)
 
@@ -53,11 +53,11 @@ def depth_first_solve(puzzle):
 def depth_helper(puzzle, seen):
     """
     :param puzzle: Puzzle
-    :param seen: Set
+    :param seen: list[Puzzle]
     :return: Puzzle | None
     """
-
-    seen.add(puzzle)
+    
+    seen.append(puzzle)
 
     if puzzle.is_solved():
             return puzzle

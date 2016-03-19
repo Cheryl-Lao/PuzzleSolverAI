@@ -180,17 +180,37 @@ class SudokuPuzzle(Puzzle):
                 [SudokuPuzzle(n,
                  symbols[:i] + [d] + symbols[i + 1:], symbol_set)
                  for d in allowed_symbols])
+
     def fail_fast(self):
-    # override fail_fast
-    # Notice that it is not possible to complete a sudoku puzzle if there
-    # is one open position that has no symbols available to put in it.  In
-    # other words, if there is one open position where the symbols already used
-    # in the same row, column, and subsquare exhaust the symbols available,
-    # there is no point in continuing.
+        # override fail_fast
+        # Notice that it is not possible to complete a sudoku puzzle if there
+        # is one open position that has no symbols available to put in it.
+        # In other words, if there is one open position where the symbols
+        # already used in the same row, column, and subsquare exhaust the
+        # symbols available, there is no point in continuing.
         # TODO
-        return len(self.extensions()) == 0
 
+        # check if grid is valid (no repeats in row/column/square)
+        # look for empty spaces
 
+        failed = False
+
+        # The next two lines might be wrong # TODO AS IN TAKE THIS OUT LATER
+        if len(self.extensions()) == 0:
+            return True
+
+        else:
+            empty_counter = 0
+            for i in range(len(self._symbols)):
+                if self._symbols[i] == "*":
+                    for possible_sol in self._symbol_set:
+                        copied = self._symbols[:]
+                        copied[i] = possible_sol
+                        new_sudoku_child = \
+                            SudokuPuzzle(self._n, copied, self._symbol_set)
+                        if not new_sudoku_child.extensions:
+                            failed = True
+        return failed
 
     # some helper methods
     def _row_set(self, m):

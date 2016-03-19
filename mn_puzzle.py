@@ -72,9 +72,12 @@ class MNPuzzle(Puzzle):
 
         return result
 
-
-
     def extensions(self):
+        """
+
+        :return:
+        :rtype:
+        """
 
         extensions = []
         # A tuple for the location of the
@@ -93,29 +96,30 @@ class MNPuzzle(Puzzle):
             if copied_grid is not None:
                 extensions.append(copied_grid)
 
-    # TODO
-    # override extensions
-    # legal extensions are configurations that can be reached by swapping one
-    # symbol to the left, right, above, or below "*" with "*"
+    def is_solved(self):
+        """
 
-    # TODO
-    # override is_solved
-    # a configuration is solved when from_grid is the same as to_grid
+        :return:
+        :rtype:
+        """
+
+        # TODO
+        # override is_solved
+        # a configuration is solved when from_grid is the same as to_grid
+
+        return self.from_grid == self.to_grid
+
     def swap_positions(self, x1, y1, x2, y2):
         """
         Return an MN puzzle where the object at (x1, y1) is switched with the
-        object at (x2, y2) in its from_grid. If this is not possible, return None
+        object at (x2, y2) in its from_grid. If this is not possible, return
+        None
 
-        :param x1:
-        :type x1:
-        :param y1:
-        :type y1:
-        :param x2:
-        :type x2:
-        :param y2:
-        :type y2:
-        :return:
-        :rtype:
+        :type x1:int
+        :type y1:int
+        :type x2: int
+        :type y2: int
+        :rtype: MNPuzzle
         """
 
         starter_grid = list(self.from_grid)[:]

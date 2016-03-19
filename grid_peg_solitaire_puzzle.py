@@ -44,13 +44,13 @@ class GridPegSolitairePuzzle(Puzzle):
             if p[1] - 2 >= 0 and marker[p[0]][p[1] - 1] == "*" and marker[p[0]][p[1] - 2] == ".":
                 pegs[p].append("left")  # peg can move left
 
-            if p[1] + 2 <= len(marker[0]) and marker[p[0]][p[1] + 1] == "*" and marker[p[0]][p[1] + 2] == ".":
+            if p[1] + 2 < len(marker[0]) and marker[p[0]][p[1] + 1] == "*" and marker[p[0]][p[1] + 2] == ".":
                 pegs[p].append("right")  # peg can move right
 
             if p[0] - 2 >= 0 and marker[p[0] - 1][p[1]] == "*" and marker[p[0] - 2][p[1] - 2] == ".":
                 pegs[p].append("up")  # peg can move up
 
-            if p[0] + 2 <= len(marker) and marker[p[0] + 1][p[1]] == "*" and marker[p[0] + 2][p[1] - 2] == ".":
+            if p[0] + 2 < len(marker) and marker[p[0] + 1][p[1]] == "*" and marker[p[0] + 2][p[1] - 2] == ".":
                 pegs[p].append("down")  # peg can move down
 
         charts = [self.create_new_grid(p, d) for p in pegs for d in pegs[p]]
@@ -133,6 +133,7 @@ class GridPegSolitairePuzzle(Puzzle):
         marker_set = str(self.marker_set)
 
         return "GridPegSolitairePuzzle(marker, marker_set)".format(marker_string)
+
 if __name__ == "__main__":
     import doctest
 
