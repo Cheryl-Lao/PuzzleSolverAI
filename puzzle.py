@@ -41,13 +41,13 @@ class Puzzle:
         raise NotImplementedError
 
 
-def grid_string(grid):
+    def grid_string(self, grid):
 
-    result = ""
-    for row in grid:
-        for element in row:
-            result += str(element)
-            result += " "
-        result += "\n"
+        result = ""
+        for row in grid:
+            for element in row:
+                result += str(element)
+                result += " "
+            result += "\n"
 
-    return result
+        return result

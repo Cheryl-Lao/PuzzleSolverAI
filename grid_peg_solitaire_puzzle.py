@@ -1,5 +1,5 @@
 from puzzle import Puzzle
-
+import copy
 
 class GridPegSolitairePuzzle(Puzzle):
     """
@@ -28,67 +28,204 @@ class GridPegSolitairePuzzle(Puzzle):
     # implement __eq__, __str__ methods
     # __repr__ is up to you
 
-    def extensions(self):
-        marker, marker_set = self._marker, self._marker_set
-
-        pegs = {}  # dictionary of tuples representing pegs on board,
-        # each with a list of directions
-
-        for i in range(len(marker)): # finds the pegs
-            for j in range(len(marker[i])):
-                if marker[i][j] == "*":
-                    pegs[(i, j)] = []
-
-        for p in pegs: # for each peg, find movable directions
-
-            if p[1] - 2 >= 0 and marker[p[0]][p[1] - 1] == "*" and marker[p[0]][p[1] - 2] == ".":
-                pegs[p].append("left")  # peg can move left
-
-            if p[1] + 2 < len(marker[0]) and marker[p[0]][p[1] + 1] == "*" and marker[p[0]][p[1] + 2] == ".":
-                pegs[p].append("right")  # peg can move right
-
-            if p[0] - 2 >= 0 and marker[p[0] - 1][p[1]] == "*" and marker[p[0] - 2][p[1] - 2] == ".":
-                pegs[p].append("up")  # peg can move up
-
-            if p[0] + 2 < len(marker) and marker[p[0] + 1][p[1]] == "*" and marker[p[0] + 2][p[1] - 2] == ".":
-                pegs[p].append("down")  # peg can move down
-
-        charts = [self.create_new_grid(p, d) for p in pegs for d in pegs[p]]
-
-        return [GridPegSolitairePuzzle(c, marker_set) for c in charts]
-
-
     # TODO
     # override extensions
     # legal extensions consist of all configurations that can be reached by
     # making a single jump from this configuration
+    def extensions(self):
+        """
+        Return a list of legal GridPegSolitairePuzzle extensions from self
 
-    def create_new_grid(self, coord, direction):
-        chart = self._marker
+        :rtype: list[GridPegSolitairePuzzle]
 
-        if direction == "left":
-            chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
-            chart[coord[0]][coord[1] - 1] = "."  # emptied
-            chart[coord[0]][coord[1] - 2] = "*"  # peg moves here
+        >>> grid = [["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", ".", "*", "*"], \
+                   ["*", "*", "*", "*", "*"]]
+        >>> sample = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
+        >>> for sample in sample.extensions(): print(sample, "END")
+        * * * * *
+        * * . * *
+        * * . * *
+        * * * * *
+        * * * * * END
+        * * * * *
+        * * * * *
+        * * * * *
+        * * * . .
+        * * * * * END
+        * * * * *
+        * * * * *
+        * * * * *
+        . . * * *
+        * * * * * END
+        >>> grid2 = [[".", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"]]
+        >>> sample2 = GridPegSolitairePuzzle(grid2, {"*", ".", "#"})
+        >>> for sample in sample2.extensions(): print(sample2, "END")
 
-        elif direction == "right":
-            chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
-            chart[coord[0]][coord[1] + 1] = "."  # emptied
-            chart[coord[0]][coord[1] + 2] = "*"  # peg moves here
+        """
 
-        elif direction == "up":
-            chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
-            chart[coord[0] - 1][coord[1]] = "."  # emptied
-            chart[coord[0] - 2][coord[1]] = "*"  # peg moves here
+        result = []
+        empty_spaces = self.list_empty_spaces()
+        directions = ["N", "E", "S", "W"]
 
-        elif direction == "down":
-            chart[coord[0]][coord[0]] = "."  # jumping peg's spot is emptied
-            chart[coord[0] + 1][coord[1]] = "."  # emptied
-            chart[coord[0] + 2][coord[1]] = "*"  # peg moves here
+        copied = copy.deepcopy(self)
+        for origin in empty_spaces:
 
-        return chart
+            for direction in directions:
+
+                neighbour = copied.neighbour_at(origin, direction)
+
+                if neighbour is not None and neighbour[1] != "#":
+                    next_neighbour = copied.neighbour_at(neighbour[0], direction)
+
+                    if next_neighbour is not None and next_neighbour[1] != "#":
+                        # Start skipping
+                        # Peg fills up the empty spot
+                        copied._marker[origin[1]][origin[0]] = "*"
+
+                        # Peg that is skipped over is taken off
+                        copied._marker[neighbour[0][1]][neighbour[0][0]] = "."
+                        # Peg's original location is now empty
+                        copied._marker[next_neighbour[0][1]][next_neighbour[0][0]] = "."
+
+                # If there was a change in the grid
+                if list(copied._marker) != list(self._marker):
+                    result.append(copied)
+                # Reset copied
+                copied = copy.deepcopy(self)
+
+        return result
+
+    def list_empty_spaces(self):
+        """
+
+        Return a list of coordinates for the empty spaces in self
+
+        :rtype: list[tuple(int, int)]
+
+        >>> grid = [[".", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", ".", "*", "*"], \
+                   ["*", "*", "*", "*", "."]]
+        >>> sample = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
+        >>> sample.list_empty_spaces()
+        [(0, 0), (2, 3), (4, 4)]
+        >>> grid2 = [["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["#", "*", "#", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "#"]]
+        >>> sample2 = GridPegSolitairePuzzle(grid2, {"*", ".", "#"})
+        >>> sample2.list_empty_spaces()
+        []
+        """
+
+        empty_spaces = []
+
+        for i in range(len(self._marker)):
+            for j in range((len(self._marker[0]))):
+                if self._marker[j][i] == ".":
+                    empty_spaces.append((i, j))
+        return empty_spaces
+
+    def neighbour_at(self, origin, direction):
+        """
+
+        Return a tuple of the location and symbol of the peg in direction of
+        origin if it exists. Otherwise, return None
+
+        :type origin: tuple(int, int)
+        :type direction: str
+        :rtype: tuple(tuple(int, int), str) | None
+
+        >>> grid = [["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["#", "*", "#", "*", "*"], \
+                   ["*", "*", "*", "*", "*"], \
+                   ["*", "*", "*", "*", "#"]]
+        >>> sample = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
+        >>> sample.neighbour_at((2, 1), "S")
+        ((2, 2), '#')
+        """
+
+        # Origin_row is the y-coord of the coordinate which is the row number
+        origin_row = origin[1]
+        # Origin_column is the x-coord of the coordinate which is the row number
+        origin_column = origin[0]
+        # Yes. it's confusing. sorry # TODO
+        found = False
+
+        if direction == "N":
+            # If it's not on the top row
+            if origin_row != 0:
+                # Subtract 1 from the n coordinate to go 1 up
+                origin_row -= 1
+                found = True
+
+        elif direction == "E":
+            # If it's not in the rightmost column
+            if origin_column != len(self._marker[0])-1:
+                # Add 1 to the column coordinate to go 1 right
+                origin_column += 1
+                found = True
+
+        elif direction == "S":
+            # If it's not in the bottom row
+            if not origin_row == len(self._marker) - 1:
+
+                # Subtract 1 from the row coordinate to go 1 down
+                origin_row += 1
+                found = True
+
+        elif direction == "W":
+            # If it's not in the leftmost column
+            if origin_column != 0:
+                # Subtract 1 from the column coordinate to go 1 left
+                origin_column -= 1
+                found = True
+
+        if found:
+            neighbour_coord = (origin_column, origin_row)
+            # Find the symbol at the changed coordinates
+            neighbour_symbol = self._marker[origin_row][origin_column]
+            # Return the neighbour's location and symbol
+
+            return neighbour_coord, neighbour_symbol
+
+        else:
+            return None
 
     def is_solved(self):
+        """
+        Return whether or not a GridPegPuzzle is in a solved state
+
+        :rtype: bool
+
+        >>> grid = [["#", "*", "*", "*", "*"],\
+                   ["*", "*", "*", ".", "*"],\
+                   [".", "*", "*", "*", "*"],\
+                   ["*", "#", ".", "*", "*"],\
+                   ["*", ".", "*", "*", "*"]]
+        >>> example = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
+        >>> example.is_solved()
+        False
+        >>> did_grid = [[".", "*", ".", ".", "."],\
+                       [".", ".", ".", ".", "."],\
+                       [".", "#", ".", ".", "."],\
+                       [".", ".", ".", ".", "#"],\
+                       [".", ".", ".", ".", "."]]
+        >>> example2 = GridPegSolitairePuzzle(did_grid, {"*", ".", "#"})
+        >>> example2.is_solved()
+        True
+        """
+
         # TODO
         # override is_solved
         # A configuration is solved when there is exactly one "*" left
@@ -98,26 +235,85 @@ class GridPegSolitairePuzzle(Puzzle):
 
     def __str__(self):
         """
+        Return  string representation of a GridPegSolitairePuzzle
 
-        :return:
         :rtype: str
+
+        >>> grid = [["#", "*", "*", "*", "*"],\
+                   ["*", "*", "*", ".", "*"],\
+                   [".", "*", "*", "*", "*"],\
+                   ["*", "#", ".", "*", "*"],\
+                   ["*", ".", "*", "*", "*"]]
+        >>> example = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
+        >>> print(example)
+        # * * * *
+        * * * . *
+        . * * * *
+        * # . * *
+        * . * * *
+
+        >>> grid2 = [[".", "#"],\
+                     ["*", "*"],\
+                     [".", "*"],\
+                     ["*", "#"],\
+                     ["*", "."]]
+        >>> example2 = GridPegSolitairePuzzle(grid2, {"*", ".", "#"})
+        >>> print(example2)
+        . #
+        * *
+        . *
+        * #
+        * .
         """
 
-        return "\n".join(x for x in self._marker)
+        result = ""
+        # Loop through each row
+        for i in range(len(self._marker)):
+            # Each element in each row
+            for j in range(len(self._marker[0])):
+                result += str(self._marker[i][j])
+                result += " "
+            # Take off the extra blank space - we aren't Taylor Swift
+            result = result.strip(" ")
+            result += "\n"
+
+        result = result.strip("\n")
+        return result
 
     def __eq__(self, other):
         """
+        Return whether or not two GridPegSolitairePuzzles are equal
 
         :type other: GridPegSolitairePuzzle
         :rtype: bool
+
+        >>> grid = [["#", "*", "*", "*", "*"],\
+                   ["*", "*", "*", ".", "*"],\
+                   [".", "*", "*", "*", "*"],\
+                   ["*", "#", ".", "*", "*"],\
+                   ["*", ".", "*", "*", "*"]]
+        >>> pegitaire = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
+        >>> grid2= [["#", "*", "*", "*", "*"],\
+                   ["*", "*", "*", ".", "*"],\
+                   [".", "*", "*", "*", "*"],\
+                   ["*", "#", ".", "*", "*"],\
+                   ["*", ".", "*", "*", "*"]]
+        >>> identical_twin = GridPegSolitairePuzzle(grid2, {"*", ".", "#"})
+        >>> pegitaire == identical_twin
+        True
+        >>> grid3= [["*", "*", "*", "*", "*"],\
+                   ["*", "*", "*", "*", "*"],\
+                   ["*", "*", "*", "*", "*"],\
+                   ["*", "*", "*", "*", "*"],\
+                   ["*", "*", "*", "*", "*"]]
+        >>> fraternal_twin = GridPegSolitairePuzzle(grid3,{"*", ".", "#"})
+        >>> pegitaire == fraternal_twin
+        False
         """
 
-        if self.marker_set != other.marker_set:
-            return False
-
-        for i in range(len(self.marker)):
-            for j in range(len(self.marker[i])):
-                if self.marker[i][j] != other.marker[i][j]:
+        for i in range(len(self._marker)):
+            for j in range(len(self._marker[i])):
+                if self._marker[i][j] != other._marker[i][j]:
                     return False
 
         return True
@@ -125,14 +321,26 @@ class GridPegSolitairePuzzle(Puzzle):
     def __repr__(self):
         """
 
-        Return a string representation of self that can be used by
-        :return:
-        :rtype: str
-        """
-        marker_string = Puzzle.grid_string(self.marker)
-        marker_set = str(self.marker_set)
+        Return a string representation of self that can be used by the
+        initializer.
 
-        return "GridPegSolitairePuzzle(marker, marker_set)".format(marker_string)
+        :rtype: str
+
+        >>> grid = [["#", "*", "*", "*", "*"],\
+                   ["*", "*", "*", ".", "*"],\
+                   [".", "*", "*", "*", "*"],\
+                   ["*", "#", ".", "*", "*"],\
+                   ["*", ".", "*", "*", "*"]]
+        >>> example = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
+        >>> example.__repr__()
+        "GridPegSolitairePuzzle([['#', '*', '*', '*', '*'], ['*', '*', '*', '.', '*'], ['.', '*', '*', '*', '*'], ['*', '#', '.', '*', '*'], ['*', '.', '*', '*', '*']], {'.', '*', '#'})"
+        """
+
+        marker_string = str(self._marker)
+        marker_set = str(self._marker_set)
+
+        return "GridPegSolitairePuzzle({}, {})".format(marker_string, marker_set)
+
 
 if __name__ == "__main__":
     import doctest
