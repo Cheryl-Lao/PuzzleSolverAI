@@ -5,10 +5,11 @@ from puzzle import Puzzle
 from collections import deque
 # set higher recursion limit
 # which is needed in PuzzleNode.__str__
-#import resource
+# import resource
 import sys
-#resource.setrlimit(resource.RLIMIT_STACK, (2**29, -1))
+# resource.setrlimit(resource.RLIMIT_STACK, (2**29, -1))
 sys.setrecursionlimit(10**6)
+
 
 def gather_lists(list_):
     """
@@ -23,18 +24,20 @@ def gather_lists(list_):
     >>> gather_lists(list_)
     [1, 2, 3, 4]
     """
-    if list_ == []:
+
+    if not list_:
         return list_
     if isinstance(list_[0], list):
-        return (gather_lists(list_[0]) + gather_lists(list_[1:]))
+        return gather_lists(list_[0]) + gather_lists(list_[1:])
 
-    return (list_[:1] + list_[1:])
+    return list_[:1] + list_[1:]
 
 # TODO
 # implement depth_first_solve
 # do NOT change the type contract
 # you are welcome to create any helper functions
 # you like
+
 def depth_first_solve(puzzle):
     """
     Return a path from PuzzleNode(puzzle) to a PuzzleNode containing
@@ -56,7 +59,7 @@ def depth_helper(puzzle, seen):
     :param seen: list[Puzzle]
     :return: Puzzle | None
     """
-    
+
     seen.append(puzzle)
 
     if puzzle.is_solved():
@@ -98,11 +101,11 @@ def breadth_first_solve(puzzle):
     """
     # TODO
     to_check = deque()
-    to_check.add(puzzle)
-    seen = set()
+    to_check.append(puzzle)
+    seen = []
 
     while to_check:
-        puzzle_config = to_check.pop(0)
+        puzzle_config = to_check.popleft()
         if puzzle_config.fail_fast():
             return None
         if puzzle_config not in seen:
@@ -111,11 +114,12 @@ def breadth_first_solve(puzzle):
             if puzzle_config.is_solved():
                 return puzzle_config
 
-            if puzzle_config.extensions:
-                # If there are extensions add the children all at once to the queue
-                for extension in puzzle_config.extensions:
-                    to_check.add(extension)
-            seen.add(puzzle_config)
+            if puzzle_config.extensions():
+                # If there are extensions add children all at once to the queue
+                for extension in puzzle_config.extensions():
+                    to_check.append(extension)
+            seen.append(puzzle_config)
+
     # If it gets to this line it means that there were no solutions found at all
     return None
 
@@ -162,6 +166,7 @@ class PuzzleNode:
         >>> pn1.__eq__(pn3)
         False
         """
+
         return (type(self) == type(other) and
                 self.puzzle == other.puzzle and
                 all([x in self.children for x in other.children]) and
@@ -173,5 +178,6 @@ class PuzzleNode:
 
         # doctest not feasible.
         """
+
         return "{}\n\n{}".format(self.puzzle,
                                  "\n".join([str(x) for x in self.children]))

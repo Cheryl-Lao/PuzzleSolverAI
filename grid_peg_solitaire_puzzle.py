@@ -73,6 +73,7 @@ class GridPegSolitairePuzzle(Puzzle):
         result = []
         empty_spaces = self.list_empty_spaces()
         directions = ["N", "E", "S", "W"]
+        starter_grid = self._marker
 
         copied = copy.deepcopy(self)
         for origin in empty_spaces:
@@ -82,7 +83,7 @@ class GridPegSolitairePuzzle(Puzzle):
                 neighbour = copied.neighbour_at(origin, direction)
 
                 if neighbour is not None and neighbour[1] != "#":
-                    next_neighbour = copied.neighbour_at(neighbour[0], direction)
+                    next_neighbour = copied.neighbour_at(neighbour[0],direction)
 
                     if next_neighbour is not None and next_neighbour[1] != "#":
                         # Start skipping
@@ -92,11 +93,12 @@ class GridPegSolitairePuzzle(Puzzle):
                         # Peg that is skipped over is taken off
                         copied._marker[neighbour[0][1]][neighbour[0][0]] = "."
                         # Peg's original location is now empty
-                        copied._marker[next_neighbour[0][1]][next_neighbour[0][0]] = "."
+                        copied._marker[next_neighbour[0][1]]\
+                            [next_neighbour[0][0]] = "."
 
-                # If there was a change in the grid
-                if list(copied._marker) != list(self._marker):
-                    result.append(copied)
+                        # Only if it's not the same as the original grid
+                        if not starter_grid == copied._marker:
+                            result.append(copied)
                 # Reset copied
                 copied = copy.deepcopy(self)
 
@@ -159,7 +161,7 @@ class GridPegSolitairePuzzle(Puzzle):
         origin_row = origin[1]
         # Origin_column is the x-coord of the coordinate which is the row number
         origin_column = origin[0]
-        # Yes. it's confusing. sorry # TODO
+        # Keeping track of whether or not the coordinate was found
         found = False
 
         if direction == "N":
@@ -339,7 +341,7 @@ class GridPegSolitairePuzzle(Puzzle):
         marker_string = str(self._marker)
         marker_set = str(self._marker_set)
 
-        return "GridPegSolitairePuzzle({}, {})".format(marker_string, marker_set)
+        return "GridPegSolitairePuzzle({}, {})".format(marker_string,marker_set)
 
 
 if __name__ == "__main__":

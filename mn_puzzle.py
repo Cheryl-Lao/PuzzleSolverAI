@@ -80,7 +80,7 @@ class MNPuzzle(Puzzle):
         """
 
         extensions = []
-        # A tuple for the location of the
+        # A tuple for the location of the blank spot
         swap_spot = self.find_coordinates("*")
 
         commands = ["swap_spot[0] += 1", "swap_spot[0] -= 1",
@@ -88,7 +88,7 @@ class MNPuzzle(Puzzle):
 
         for command in commands:
 
-            copied_grid = self[:]
+            copied_grid = self.from_grid[:]
             eval(command)
             new_spot = swap_spot
             copied_grid.swap_positions(copied_grid.m, copied_grid.n, new_spot[0], new_spot[1])

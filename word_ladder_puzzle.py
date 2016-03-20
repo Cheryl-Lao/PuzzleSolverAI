@@ -39,7 +39,7 @@ class WordLadderPuzzle(Puzzle):
         # TODO
 
         good_words = []
-        from_word, to_word, ws, chars = self._from_word, self._to_word, self.ws, self.chars
+        from_word, to_word, ws, chars = self._from_word, self._to_word, self._word_set, self._chars
 
         if not self.is_solved():
             word_list = []
@@ -51,6 +51,7 @@ class WordLadderPuzzle(Puzzle):
                 # If the word is in the allowed words
                 if word in ws:
                     good_words.append(word)
+
         return [WordLadderPuzzle(q, to_word, ws) for q in good_words]
 
     def is_solved(self):
@@ -64,7 +65,7 @@ class WordLadderPuzzle(Puzzle):
         return (type(other) == type(self) and
                 self._from_word == other._from_word and
                 self._to_word == other._to_word and
-                self.chars == other.chars)
+                self._chars == other._chars)
 
     def __str__(self):
         """
