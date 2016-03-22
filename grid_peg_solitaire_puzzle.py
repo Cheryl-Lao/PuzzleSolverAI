@@ -66,42 +66,61 @@ class GridPegSolitairePuzzle(Puzzle):
                    ["*", "*", "*", "*", "*"], \
                    ["*", "*", "*", "*", "*"]]
         >>> sample2 = GridPegSolitairePuzzle(grid2, {"*", ".", "#"})
-        >>> for sample in sample2.extensions(): print(sample2, "END")
+        >>> for sample in sample2.extensions(): print(sample, "END")
+        * . . * *
+        * * * * *
+        * * * * *
+        * * * * *
+        * * * * * END
+        * * * * *
+        . * * * *
+        . * * * *
+        * * * * *
+        * * * * * END
+        >>> grid3 = [["#", "*"], \
+                   ["#", "#"], \
+                   [".", "*"], \
+                   ["*", "*"], \
+                   ["*", "*"]]
+        >>> sample3 = GridPegSolitairePuzzle(grid3, {"*", ".", "#"})
+        >>> for sample in sample3.extensions(): print(sample, "END")
+        # *
+        # #
+        * *
+        . *
+        . * END
+        >>> grid4 = [["#", "*"], \
+                   ["#", "#"]]
+        >>> sample4 = GridPegSolitairePuzzle(grid4, {"*", ".", "#"})
+        >>> for sample in sample4.extensions(): print(sample, "END")
 
         """
 
         result = []
         empty_spaces = self.list_empty_spaces()
         directions = ["N", "E", "S", "W"]
-        starter_grid = self._marker
-
         copied = copy.deepcopy(self)
+
         for origin in empty_spaces:
 
             for direction in directions:
-
                 neighbour = copied.neighbour_at(origin, direction)
 
                 if neighbour is not None and neighbour[1] != "#":
                     next_neighbour = copied.neighbour_at(neighbour[0],direction)
 
                     if next_neighbour is not None and next_neighbour[1] != "#":
-                        # Start skipping
                         # Peg fills up the empty spot
                         copied._marker[origin[1]][origin[0]] = "*"
-
                         # Peg that is skipped over is taken off
                         copied._marker[neighbour[0][1]][neighbour[0][0]] = "."
                         # Peg's original location is now empty
                         copied._marker[next_neighbour[0][1]]\
                             [next_neighbour[0][0]] = "."
 
-                        # Only if it's not the same as the original grid
-                        if not starter_grid == copied._marker:
-                            result.append(copied)
+                        result.append(copied)
                 # Reset copied
                 copied = copy.deepcopy(self)
-
         return result
 
     def list_empty_spaces(self):
@@ -131,8 +150,8 @@ class GridPegSolitairePuzzle(Puzzle):
 
         empty_spaces = []
 
-        for i in range(len(self._marker)):
-            for j in range((len(self._marker[0]))):
+        for i in range(len(self._marker[0])):
+            for j in range((len(self._marker))):
                 if self._marker[j][i] == ".":
                     empty_spaces.append((i, j))
         return empty_spaces
@@ -203,6 +222,20 @@ class GridPegSolitairePuzzle(Puzzle):
 
         else:
             return None
+
+    def fail_fast(self):
+        """
+
+        Return whether or not a GridPegSolitairePuzzle is unsolvable
+
+        :return:
+        :rtype: bool
+        """
+
+        if not self.extensions():
+            return True
+
+        return False
 
     def is_solved(self):
         """

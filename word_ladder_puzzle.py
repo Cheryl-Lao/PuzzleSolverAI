@@ -28,14 +28,22 @@ class WordLadderPuzzle(Puzzle):
 
     def extensions(self):
         """
-        Return list of extensions
+        Return list of legal WordLadderPuzzle extensions from self.
         # override extensions
         # legal extensions are WordPadderPuzzles that have a from_word that can
         # be reached from this one by changing a single letter to one of those
         # in self._chars
-        :type self: Puzzle
-        :rtype: list[Puzzle]
+        :type self: WordLadderPuzzle
+        :rtype: list[WordLadderPuzzle]
+
+        >>> from_word = 'cast'
+        >>> to_word = 'save'
+        >>> word_set = {'cost', 'case','cave','save'}
+        >>> puzzle = WordLadderPuzzle(from_word, to_word, word_set)
+        >>> puzzle.extensions()
+        [WordLadderPuzzle('cost', to_word, word_set), WordLadderPuzzle('case', to_word, word_set)]
         """
+
         # TODO
 
         good_words = []
@@ -62,6 +70,31 @@ class WordLadderPuzzle(Puzzle):
         return self._from_word == self._to_word
 
     def __eq__(self, other):
+        """
+        Return true if WordLadderPuzzle object self equals other.
+
+        :type self: WordLadderPuzzle
+        :param other: WordLadderPuzzle
+        :return: bool
+
+        >>> from_word1 = 'cost'
+        >>> to_word1 = 'save'
+        >>> word_set1 = {'cast', 'case','cave','save'}
+        >>> puzzle1 = WordLadderPuzzle(from_word1, to_word1, word_set1)
+        >>> from_word2 = 'cost'
+        >>> to_word2 = 'save'
+        >>> word_set2 = {'cast', 'case','cave','save'}
+        >>> puzzle2 = WordLadderPuzzle(from_word2, to_word2, word_set2)
+        >>> puzzle1 == puzzle2
+        True
+        >>> from_word3 = 'carp'
+        >>> to_word3 = 'save'
+        >>> word_set3 = {'care', 'case','cave','save'}
+        >>> puzzle3 = WordLadderPuzzle(from_word3, to_word3, word_set3)
+        >>> puzzle1 == puzzle3
+        False
+        """
+
         return (type(other) == type(self) and
                 self._from_word == other._from_word and
                 self._to_word == other._to_word and
@@ -69,20 +102,37 @@ class WordLadderPuzzle(Puzzle):
 
     def __str__(self):
         """
-
-        :rtype: str
+        :type self: WordLadderPuzzle
+        rtype: Str
+        >>> from_word = 'cast'
+        >>> to_word = 'save'
+        >>> word_set = {'cost', 'case','cave','save'}
+        >>> puzzle = WordLadderPuzzle(from_word, to_word, word_set)
+        >>> print(puzzle)
+        cast --> save
         """
+
         return self._from_word + " --> " + self._to_word
 
     def __repr__(self):
         """
-        :return:
+        Return a representation of WordLadderPuzzle self that can be evaluate to produce another WordLadderPuzzle.
+
+        :type self: WordLadderPuzzle
         rtype: Str
+        >>> from_word = 'cast'
+        >>> to_word = 'save'
+        >>> word_set = {'cost', 'case','cave','save'}
+        >>> puzzle = WordLadderPuzzle(from_word, to_word, word_set)
+        >>> repr(puzzle)
+        "WordLadderPuzzle(cast, save, {'cost', 'case', 'cave', 'save'})"
         """
-        #You may need to change str(self._word_set) to repr(self._word_set)
-        result = "WordLadderPuzzle({}, {}, {})".format(self._from_word, self._to_word, str(self._word_set))
 
+        result = "WordLadderPuzzle({}, {}, {})".format(self._from_word,
+                                                       self._to_word,
+                                                       str(self._word_set))
 
+        return result
 
 if __name__ == '__main__':
     import doctest

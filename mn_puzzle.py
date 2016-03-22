@@ -33,8 +33,15 @@ class MNPuzzle(Puzzle):
 
         Precondition: self and other are both rectangular grids
 
-        :return:
         :rtype: str
+
+        >>> grid_1 = (("1", "2", "3"), ("4", "5", "*"))
+        >>> grid_2 = (("1", "2", "3"), ("4", "5", "*"))
+        >>> grid_3 = (("1", "2", "3"), ("4", "5", "*"), ("6", "7", "8"))
+        >>> grid_1.__eq__(grid_2)
+        True
+        >>> grid_1.__eq__(grid_3)
+        False
         """
 
         if len(self.to_grid) != len(other.to_grid):
@@ -51,6 +58,14 @@ class MNPuzzle(Puzzle):
 
         :return:
         :rtype: str
+        Return a human-readable string representation of MNPuzzle self.
+
+        >>> target_grid = (("1", "2", "3"), ("4", "5", "*"))
+        >>> start_grid = (("*", "2", "3"), ("1", "4", "5"))
+        >>> mn = MNPuzzle(start_grid, target_grid))
+        >>> print(mn)
+        1 2 3
+        4 5 *
         """
         result = ""
         for row in self.to_grid:
@@ -77,12 +92,25 @@ class MNPuzzle(Puzzle):
 
         :return:
         :rtype:
+
+        Return a list of extensions of MNPuzzle self.
+
+        >>> target_grid = (("1", "2"), ("3", "*"))
+        >>> start_grid = (("*", "2"), ("1", "3"))
+        >>> mn = MNPuzzle(start_grid, target_grid))
+        >>> L1 = list(mn.extensions())
+        >>> L2 = [(("2", "*"), ("1", "3")), (("1", "2"), ("*", "3"))]
+        >>> len(L1) == len(L2)
+        >>> all([s in L2 for s in L1])
+        True
+        >>> all([s in L1 for s in L2])
+        True
         """
 
         extensions = []
         # A tuple for the location of the blank spot
         swap_spot = self.find_coordinates("*")
-
+        swap_spot = list(swap_spot)
         commands = ["swap_spot[0] += 1", "swap_spot[0] -= 1",
                     "swap_spot[1] += 1", "swap_spot[1] -= 1"]
 
@@ -91,7 +119,7 @@ class MNPuzzle(Puzzle):
             copied_grid = self.from_grid[:]
             eval(command)
             new_spot = swap_spot
-            copied_grid.swap_positions(copied_grid.m, copied_grid.n, new_spot[0], new_spot[1])
+            copied_grid = self.swap_positions(copied_grid, swap_spot[0], swap_spot[1], new_spot[0], new_spot[1])
 
             if copied_grid is not None:
                 extensions.append(copied_grid)
@@ -100,7 +128,19 @@ class MNPuzzle(Puzzle):
         """
 
         :return:
-        :rtype:
+        :rtype: bool
+        Return whether Puzzle self is solved.
+
+        >>> target_grid = (("*", "2"), ("1", "3"))
+        >>> start_grid = (("*", "2"), ("1", "3"))
+        >>> mn = MNPuzzle(start_grid, target_grid))
+        >>> mn.is_solved()
+        True
+        >>> target_grid = (("1", "2"), ("3", "*"))
+        >>> start_grid = (("*", "2"), ("1", "3"))
+        >>> mn_2 = MNPuzzle(start_grid, target_grid))
+        >>> mn_2.is_solved()
+        False
         """
 
         # TODO
@@ -109,20 +149,30 @@ class MNPuzzle(Puzzle):
 
         return self.from_grid == self.to_grid
 
-    def swap_positions(self, x1, y1, x2, y2):
+    def swap_positions(self, grid, x1, y1, x2, y2):
         """
         Return an MN puzzle where the object at (x1, y1) is switched with the
         object at (x2, y2) in its from_grid. If this is not possible, return
         None
-
+        :type grid: tuple(tuple())
         :type x1:int
         :type y1:int
         :type x2: int
         :type y2: int
         :rtype: MNPuzzle
+
+        >>> target_grid = (("1", "2"), ("3", "*"))
+        >>> start_grid = (("*", "2"), ("1", "3"))
+        >>> mn = MNPuzzle(start_grid, target_grid))
+        >>> swapped = mn.swap_positions(self, 0, 0, 1, 1)
+        >>> target_grid_2 = (("1", "2"), ("3", "*"))
+        >>> start_grid_2 = (("2", "*"), ("1", "3"))
+        >>> mn_2 = MNPuzzle(start_grid_2, target_grid_2))
+        >>> swapped == mn_2
+        True
         """
 
-        starter_grid = list(self.from_grid)[:]
+        starter_grid = grid
         max_x = self.m - 1
         max_y = self.n - 1
 
@@ -143,6 +193,12 @@ class MNPuzzle(Puzzle):
         :type obj:
         :return:
         :rtype:
+
+        >>> target_grid = (("1", "2", "3"), ("4", "5", "*"))
+        >>> start_grid = (("*", "2", "3"), ("1", "4", "5"))
+        >>> mn = MNPuzzle(start_grid, target_grid))
+        >>> mn.find_coordinates(self, "*")
+        [0, 0]
         """
         for i in range (self.m):
             for j in range (self.n):
