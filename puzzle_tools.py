@@ -1,6 +1,25 @@
 """
 Some functions for working with puzzles
 """
+
+
+
+
+
+
+
+
+####ADD PARENTS EACH TIME in extensions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
 from puzzle import Puzzle
 from collections import deque
 # set higher recursion limit

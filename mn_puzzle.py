@@ -67,6 +67,7 @@ class MNPuzzle(Puzzle):
         1 2 3
         4 5 *
         """
+
         result = ""
         for row in self.to_grid:
             for element in row:
@@ -110,19 +111,15 @@ class MNPuzzle(Puzzle):
         extensions = []
         # A tuple for the location of the blank spot
         swap_spot = self.find_coordinates("*")
-        swap_spot = list(swap_spot)
-        commands = ["swap_spot[0] += 1", "swap_spot[0] -= 1",
-                    "swap_spot[1] += 1", "swap_spot[1] -= 1"]
+        directions = ["N", "E", "S", "W"]
 
-        for command in commands:
+        for direction in directions:
 
-            copied_grid = self.from_grid[:]
-            eval(command)
-            new_spot = swap_spot
-            copied_grid = self.swap_positions(copied_grid, swap_spot[0], swap_spot[1], new_spot[0], new_spot[1])
+            new_grid = self.swap_direction(swap_spot, direction)
 
-            if copied_grid is not None:
-                extensions.append(copied_grid)
+            if new_grid is not None:
+                extensions.append(new_grid)
+        return extensions
 
     def is_solved(self):
         """
@@ -149,38 +146,56 @@ class MNPuzzle(Puzzle):
 
         return self.from_grid == self.to_grid
 
-    def swap_positions(self, grid, x1, y1, x2, y2):
+    def swap_direction(self, origin, direction):
         """
-        Return an MN puzzle where the object at (x1, y1) is switched with the
-        object at (x2, y2) in its from_grid. If this is not possible, return
+        Return an MN puzzle where the object at origin is switched with the
+        object in direction in its from_grid. If this is not possible, return
         None
-        :type grid: tuple(tuple())
-        :type x1:int
-        :type y1:int
-        :type x2: int
-        :type y2: int
+        :type origin: tuple(int, int)
+        :type str
         :rtype: MNPuzzle
 
-        >>> target_grid = (("1", "2"), ("3", "*"))
-        >>> start_grid = (("*", "2"), ("1", "3"))
-        >>> mn = MNPuzzle(start_grid, target_grid))
-        >>> swapped = mn.swap_positions(self, 0, 0, 1, 1)
-        >>> target_grid_2 = (("1", "2"), ("3", "*"))
-        >>> start_grid_2 = (("2", "*"), ("1", "3"))
-        >>> mn_2 = MNPuzzle(start_grid_2, target_grid_2))
-        >>> swapped == mn_2
-        True
+
         """
 
-        starter_grid = grid
-        max_x = self.m - 1
-        max_y = self.n - 1
+        starter_grid = list(self.from_grid)
+        origin_row = origin[1]
+        origin_column = origin[0]
 
-        if x1 >= max_x or y1>= max_y or x2 >= max_x or y2 >= max_y:
-            return None
 
-        starter_grid[x1][y1] , starter_grid[x2][y2] = \
-            starter_grid[x2][y2], starter_grid[x1][y1]
+
+        if direction == "N":
+            # If it's not on the top row
+            if origin_row != 0:
+                # Subtract 1 from the n coordinate to go 1 up
+                origin_row -= 1
+                found = True
+
+        elif direction == "E":
+            # If it's not in the rightmost column
+            if origin_column != len(self.from_grid[0])-1:
+                # Add 1 to the column coordinate to go 1 right
+                origin_column += 1
+                found = True
+
+        elif direction == "S":
+            # If it's not in the bottom row
+            if not origin_row == len(self.from_grid) - 1:
+
+                # Subtract 1 from the row coordinate to go 1 down
+                origin_row += 1
+                found = True
+
+        elif direction == "W":
+            # If it's not in the leftmost column
+            if origin_column != 0:
+                # Subtract 1 from the column coordinate to go 1 left
+                origin_column -= 1
+                found = True
+
+
+        starter_grid[pos1[0]][pos1[1]] , starter_grid[pos2[0]][pos2[1]] = \
+            starter_grid[pos2[0]][pos2[1]], starter_grid[pos1[0]][pos1[1]]
 
         starter_grid = tuple(starter_grid)
 

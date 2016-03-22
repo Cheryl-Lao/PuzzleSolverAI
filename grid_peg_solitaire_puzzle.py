@@ -106,10 +106,10 @@ class GridPegSolitairePuzzle(Puzzle):
             for direction in directions:
                 neighbour = copied.neighbour_at(origin, direction)
 
-                if neighbour is not None and neighbour[1] != "#":
+                if neighbour is not None and neighbour[1] == "*":
                     next_neighbour = copied.neighbour_at(neighbour[0],direction)
 
-                    if next_neighbour is not None and next_neighbour[1] != "#":
+                    if next_neighbour is not None and next_neighbour[1] == "*":
                         # Peg fills up the empty spot
                         copied._marker[origin[1]][origin[0]] = "*"
                         # Peg that is skipped over is taken off

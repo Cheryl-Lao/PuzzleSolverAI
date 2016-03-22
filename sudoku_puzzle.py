@@ -208,7 +208,7 @@ class SudokuPuzzle(Puzzle):
                         copied[i] = possible_sol
                         new_sudoku_child = \
                             SudokuPuzzle(self._n, copied, self._symbol_set)
-                        if not new_sudoku_child.extensions:
+                        if not new_sudoku_child.extensions():
                             failed = True
         return failed
 
