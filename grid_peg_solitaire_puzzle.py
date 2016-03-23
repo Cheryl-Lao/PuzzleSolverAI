@@ -1,6 +1,7 @@
 from puzzle import Puzzle
 import copy
 
+
 class GridPegSolitairePuzzle(Puzzle):
     """
     Snapshot of peg solitaire on a rectangular grid. May be solved,
@@ -117,7 +118,6 @@ class GridPegSolitairePuzzle(Puzzle):
                         # Peg's original location is now empty
                         copied._marker[next_neighbour[0][1]]\
                             [next_neighbour[0][0]] = "."
-
                         result.append(copied)
                 # Reset copied
                 copied = copy.deepcopy(self)
@@ -308,7 +308,6 @@ class GridPegSolitairePuzzle(Puzzle):
             for j in range(len(self._marker[0])):
                 result += str(self._marker[i][j])
                 result += " "
-            # Take off the extra blank space - we aren't Taylor Swift
             result = result.strip(" ")
             result += "\n"
 

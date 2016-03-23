@@ -193,23 +193,37 @@ class SudokuPuzzle(Puzzle):
         # check if grid is valid (no repeats in row/column/square)
         # look for empty spaces
 
-        failed = False
+        failed = True
 
         # The next two lines might be wrong # TODO AS IN TAKE THIS OUT LATER
         if len(self.extensions()) == 0:
-            return True
+            return failed
 
         else:
-            empty_counter = 0
+            # Take the union of the things from row, col and square
+            possible = set()
+
             for i in range(len(self._symbols)):
+
                 if self._symbols[i] == "*":
-                    for possible_sol in self._symbol_set:
+
+                    possible_row = \
+                        self._symbol_set.difference_update(self._row_set(i))
+                    possible_col = \
+                        self._symbol_set.difference_update(self._column_set(i))
+                    possible_subspace = \
+                        self._symbol_set.difference_update(
+                            self._subsquare_set(i))
+
+                    possible = possible_row & possible_col & possible_subspace
+
+                    for possible_sol in possible:
                         copied = self._symbols[:]
                         copied[i] = possible_sol
                         new_sudoku_child = \
                             SudokuPuzzle(self._n, copied, self._symbol_set)
-                        if not new_sudoku_child.extensions():
-                            failed = True
+                        if new_sudoku_child.extensions():
+                            return False
         return failed
 
     # some helper methods

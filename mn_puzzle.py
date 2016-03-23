@@ -55,26 +55,28 @@ class MNPuzzle(Puzzle):
 
     def __str__(self):
         """
-
         :return:
         :rtype: str
         Return a human-readable string representation of MNPuzzle self.
 
         >>> target_grid = (("1", "2", "3"), ("4", "5", "*"))
         >>> start_grid = (("*", "2", "3"), ("1", "4", "5"))
-        >>> mn = MNPuzzle(start_grid, target_grid))
+        >>> mn = MNPuzzle(start_grid, target_grid)
         >>> print(mn)
-        1 2 3
-        4 5 *
+        * 2 3
+        1 4 5
+
         """
 
         result = ""
-        for row in self.to_grid:
+        for row in self.from_grid:
             for element in row:
                 result += str(element)
                 result += " "
+            result = result.strip(" ")
             result += "\n"
 
+        result = result.strip("\n")
         return result
 
     def __repr__(self):
@@ -98,10 +100,11 @@ class MNPuzzle(Puzzle):
 
         >>> target_grid = (("1", "2"), ("3", "*"))
         >>> start_grid = (("*", "2"), ("1", "3"))
-        >>> mn = MNPuzzle(start_grid, target_grid))
-        >>> L1 = list(mn.extensions())
+        >>> mn = MNPuzzle(start_grid, target_grid)
+        >>> L1 = [child.from_grid for child in mn.extensions()]
         >>> L2 = [(("2", "*"), ("1", "3")), (("1", "2"), ("*", "3"))]
         >>> len(L1) == len(L2)
+        True
         >>> all([s in L2 for s in L1])
         True
         >>> all([s in L1 for s in L2])
@@ -114,7 +117,7 @@ class MNPuzzle(Puzzle):
         directions = ["N", "E", "S", "W"]
 
         for direction in directions:
-
+            # swap_direction() returns an mn puzzle that we can append
             new_grid = self.swap_direction(swap_spot, direction)
 
             if new_grid is not None:
@@ -130,12 +133,12 @@ class MNPuzzle(Puzzle):
 
         >>> target_grid = (("*", "2"), ("1", "3"))
         >>> start_grid = (("*", "2"), ("1", "3"))
-        >>> mn = MNPuzzle(start_grid, target_grid))
+        >>> mn = MNPuzzle(start_grid, target_grid)
         >>> mn.is_solved()
         True
         >>> target_grid = (("1", "2"), ("3", "*"))
         >>> start_grid = (("*", "2"), ("1", "3"))
-        >>> mn_2 = MNPuzzle(start_grid, target_grid))
+        >>> mn_2 = MNPuzzle(start_grid, target_grid)
         >>> mn_2.is_solved()
         False
         """
@@ -151,18 +154,23 @@ class MNPuzzle(Puzzle):
         Return an MN puzzle where the object at origin is switched with the
         object in direction in its from_grid. If this is not possible, return
         None
-        :type origin: tuple(int, int)
-        :type str
+        :type origin: list[int, int]
+        :type direction: str
         :rtype: MNPuzzle
-
-
+        >>> target_grid = (("1", "2", "3"), ("4", "5", "*"))
+        >>> start_grid = (("*", "2", "3"), ("1", "4", "5"))
+        >>> mn = MNPuzzle(start_grid, target_grid)
+        >>> p = mn.swap_direction([0, 0], "E")
+        >>> print(p)
+        2 * 3
+        1 4 5
         """
 
-        starter_grid = list(self.from_grid)
+        found = False
+        starter_grid = turn_to_list(self.from_grid)
+
         origin_row = origin[1]
         origin_column = origin[0]
-
-
 
         if direction == "N":
             # If it's not on the top row
@@ -173,15 +181,14 @@ class MNPuzzle(Puzzle):
 
         elif direction == "E":
             # If it's not in the rightmost column
-            if origin_column != len(self.from_grid[0])-1:
+            if origin_column != len(starter_grid[0])-1:
                 # Add 1 to the column coordinate to go 1 right
                 origin_column += 1
                 found = True
 
         elif direction == "S":
             # If it's not in the bottom row
-            if not origin_row == len(self.from_grid) - 1:
-
+            if not origin_row == len(starter_grid) - 1:
                 # Subtract 1 from the row coordinate to go 1 down
                 origin_row += 1
                 found = True
@@ -192,14 +199,13 @@ class MNPuzzle(Puzzle):
                 # Subtract 1 from the column coordinate to go 1 left
                 origin_column -= 1
                 found = True
+        if found:
+            starter_grid[origin[1]][origin[0]] , starter_grid[origin_row][origin_column]= starter_grid[origin_row][origin_column], starter_grid[origin[1]][origin[0]]
+            starter_grid = turn_to_tup(starter_grid)
+            return MNPuzzle(starter_grid, self.to_grid)
 
-
-        starter_grid[pos1[0]][pos1[1]] , starter_grid[pos2[0]][pos2[1]] = \
-            starter_grid[pos2[0]][pos2[1]], starter_grid[pos1[0]][pos1[1]]
-
-        starter_grid = tuple(starter_grid)
-
-        return MNPuzzle(starter_grid, self.to_grid)
+        else:
+            return None
 
     def find_coordinates(self, obj):
         """
@@ -211,15 +217,45 @@ class MNPuzzle(Puzzle):
 
         >>> target_grid = (("1", "2", "3"), ("4", "5", "*"))
         >>> start_grid = (("*", "2", "3"), ("1", "4", "5"))
-        >>> mn = MNPuzzle(start_grid, target_grid))
-        >>> mn.find_coordinates(self, "*")
+        >>> mn = MNPuzzle(start_grid, target_grid)
+        >>> mn.find_coordinates("*")
         [0, 0]
         """
-        for i in range (self.m):
-            for j in range (self.n):
+        for i in range (self.n):
+            for j in range (self.m):
                 if self.from_grid[i][j] == obj:
                     return [i, j]
         return "error: object not in grid"
+
+def turn_to_list(tup):  # I DIDNT PUT IN TYPE CONTRACTS FOR THIS YET
+    """
+    Return a possibly nested list from a possibly nested tuple given.
+
+    >>> t = ((1, 2),(3, 4))
+    >>> y = turn_to_list(t)
+    >>> print(y)
+    [[1, 2], [3, 4]]
+    """
+
+    if isinstance(tup,tuple):
+        return [turn_to_list(t) for t in tup]
+    else:
+        return tup
+
+def turn_to_tup(l):
+    """
+    Return a possibly nested tuple from a possibly nested list given.
+
+    >>> y = [[1, 2], [3, 4]]
+    >>> t = turn_to_tup(y)
+    >>> print(t)
+    ((1, 2), (3, 4))
+    """
+
+    if isinstance(l, list):
+        return tuple(turn_to_tup(i) for i in l)
+    else:
+        return l
 
 if __name__ == "__main__":
     import doctest

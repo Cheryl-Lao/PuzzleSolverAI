@@ -1,25 +1,6 @@
 """
 Some functions for working with puzzles
 """
-
-
-
-
-
-
-
-
-####ADD PARENTS EACH TIME in extensions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-
-
-
-
-
 from puzzle import Puzzle
 from collections import deque
 # set higher recursion limit
@@ -57,6 +38,7 @@ def gather_lists(list_):
 # you are welcome to create any helper functions
 # you like
 
+
 def depth_first_solve(puzzle):
     """
     Return a path from PuzzleNode(puzzle) to a PuzzleNode containing
@@ -75,31 +57,34 @@ def depth_first_solve(puzzle):
 def depth_helper(puzzle, seen):
     """
     :param puzzle: Puzzle
-    :param seen: set[Puzzle]
-    :return: Puzzle | None
+    :param seen: set[str]
+    :return: PuzzleNode
     """
 
-    seen.add(puzzle)
+    new_puzzle_node = PuzzleNode(puzzle)
+    new_puzzle_node.children = \
+        [PuzzleNode(child) for child in new_puzzle_node.puzzle.extensions()]
 
-    if puzzle.is_solved():
-            return puzzle
+    for child in new_puzzle_node.children:
+        child.parent = new_puzzle_node
 
-    elif puzzle.fail_fast():
+    seen.add(str(new_puzzle_node.puzzle))
+
+    if new_puzzle_node.puzzle.is_solved():
+        return new_puzzle_node
+
+    elif new_puzzle_node.puzzle.fail_fast():
         return None
 
-    if puzzle.extensions():
+    # Since failfast checks for children, it can't get down to here without
+        # having children
         # Look for solutions in each branch
-        for child in puzzle.extensions():
-            # This will return the first leaf that is not None
-            # (so it's a solution) and exit the loop
-            if depth_helper(child, seen) is not None and child not in seen:
-                return depth_helper(child, seen)
-    else:
-        if puzzle.is_solved():
-            return puzzle
-
-        else:
-            return None
+    for child in new_puzzle_node.children:
+        # This will return the first leaf that is not None
+        # (so it's a solution) and exit the loop
+        if depth_helper(new_puzzle_node.puzzle, seen) is not None \
+                and str(child) not in seen:
+            return depth_helper(child, seen)
 
 
 def breadth_first_solve(puzzle):
@@ -137,6 +122,7 @@ def breadth_first_solve(puzzle):
             if puzzle_config.extensions():
                 # If there are extensions add children all at once to the queue
                 for extension in puzzle_config.extensions():
+                    extension.parent = puzzle_config
                     to_check.append(extension)
             seen.append(puzzle_config)
 
@@ -163,7 +149,9 @@ class PuzzleNode:
         @type parent: PuzzleNode | None
         @rtype: None
         """
+
         self.puzzle, self.parent = puzzle, parent
+
         if children is None:
             self.children = []
         else:
