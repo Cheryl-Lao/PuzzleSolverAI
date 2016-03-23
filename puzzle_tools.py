@@ -62,6 +62,7 @@ def depth_helper(puzzle, seen):
     """
 
     new_puzzle_node = PuzzleNode(puzzle)
+
     new_puzzle_node.children = \
         [PuzzleNode(child) for child in new_puzzle_node.puzzle.extensions()]
 

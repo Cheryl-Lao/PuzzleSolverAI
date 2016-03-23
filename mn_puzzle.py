@@ -210,10 +210,10 @@ class MNPuzzle(Puzzle):
     def find_coordinates(self, obj):
         """
 
-        :param obj:
-        :type obj:
-        :return:
-        :rtype:
+        Return the position of the first occurrence of obj in self.from_grid
+
+        :type obj: any
+        :rtype: list[int, int]
 
         >>> target_grid = (("1", "2", "3"), ("4", "5", "*"))
         >>> start_grid = (("*", "2", "3"), ("1", "4", "5"))
@@ -221,15 +221,21 @@ class MNPuzzle(Puzzle):
         >>> mn.find_coordinates("*")
         [0, 0]
         """
+
         for i in range (self.n):
             for j in range (self.m):
                 if self.from_grid[i][j] == obj:
                     return [i, j]
         return "error: object not in grid"
 
-def turn_to_list(tup):  # I DIDNT PUT IN TYPE CONTRACTS FOR THIS YET
+
+def turn_to_list(tup):
     """
+
     Return a possibly nested list from a possibly nested tuple given.
+
+    :type tup: tuple[int, int]
+    :rtype: list[int, int]
 
     >>> t = ((1, 2),(3, 4))
     >>> y = turn_to_list(t)
@@ -242,9 +248,13 @@ def turn_to_list(tup):  # I DIDNT PUT IN TYPE CONTRACTS FOR THIS YET
     else:
         return tup
 
+
 def turn_to_tup(l):
     """
     Return a possibly nested tuple from a possibly nested list given.
+
+    :type l: list[int, int]
+    :rtype: tuple[int, int]
 
     >>> y = [[1, 2], [3, 4]]
     >>> t = turn_to_tup(y)

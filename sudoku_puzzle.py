@@ -1,6 +1,5 @@
 from puzzle import Puzzle
 
-
 class SudokuPuzzle(Puzzle):
     """
     A sudoku puzzle that may be solved, unsolved, or even unsolvable.
@@ -192,10 +191,32 @@ class SudokuPuzzle(Puzzle):
 
         # check if grid is valid (no repeats in row/column/square)
         # look for empty spaces
+        """
+        1 2 3 4
+        3 4 1 2
+        4 3 2 1
+        2 1 4 3
+
+        >>> grid = ["A", "B", "C", "D"]
+        >>> grid += ["C", "*", "A", "B"]
+        >>> grid += ["*", "C", "B", "A"]
+        >>> grid += ["B", "D", "*", "C"]
+        >>> s = SudokuPuzzle(4, grid, {"A", "B", "C", "D"})
+        >>> s.fail_fast()
+        True
+
+        >>> grid2 = ["A", "B", "C", "D"]
+        >>> grid2 += ["C", "D", "A", "B"]
+        >>> grid2 += ["D", "C", "B", "A"]
+        >>> grid2 += ["B", "A", "*", "C"]
+        >>> s2 = SudokuPuzzle(4, grid2, {"A", "B", "C", "D"})
+        >>> s2.fail_fast()
+        False
+
+        """
 
         failed = True
 
-        # The next two lines might be wrong # TODO AS IN TAKE THIS OUT LATER
         if len(self.extensions()) == 0:
             return failed
 
@@ -204,16 +225,15 @@ class SudokuPuzzle(Puzzle):
             possible = set()
 
             for i in range(len(self._symbols)):
+                original_set = self._symbol_set
 
                 if self._symbols[i] == "*":
 
-                    possible_row = \
-                        self._symbol_set.difference_update(self._row_set(i))
-                    possible_col = \
-                        self._symbol_set.difference_update(self._column_set(i))
-                    possible_subspace = \
-                        self._symbol_set.difference_update(
-                            self._subsquare_set(i))
+                    possible_row = original_set - self._row_set(i)
+
+                    possible_col = original_set - self._column_set(i)
+
+                    possible_subspace = original_set - self._subsquare_set(i)
 
                     possible = possible_row & possible_col & possible_subspace
 
@@ -222,7 +242,10 @@ class SudokuPuzzle(Puzzle):
                         copied[i] = possible_sol
                         new_sudoku_child = \
                             SudokuPuzzle(self._n, copied, self._symbol_set)
-                        if new_sudoku_child.extensions():
+                        if new_sudoku_child.extensions() or \
+                                new_sudoku_child.is_solved():
+                            # If even one of the children has children or is
+                            # solvable then it hasn't failed yet
                             return False
         return failed
 
