@@ -118,13 +118,11 @@ class WordLadderPuzzle(Puzzle):
             word_list = []
 
             for i in range(len(from_word)):
-                # why was this comprehension wrong
-                #word_list = [from_word[:i] + q + from_word[i + 1:] for q in chars]
                 for q in chars:
                     word_list.append(from_word[:i] + q + from_word[i + 1:])
 
             for word in word_list:
-                if word in ws:
+                if word in ws and (word not in good_words) and word != from_word:
                     good_words.append(word)
         return [WordLadderPuzzle(q, to_word, ws) for q in good_words]
 
@@ -149,9 +147,6 @@ class WordLadderPuzzle(Puzzle):
         """
 
         return self._from_word == self._to_word
-
-
-
 
 
 if __name__ == '__main__':

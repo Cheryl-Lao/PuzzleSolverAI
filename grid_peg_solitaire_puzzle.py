@@ -306,12 +306,12 @@ class GridPegSolitairePuzzle(Puzzle):
         for i in range(len(self._marker)):
             # Each element in each row
             for j in range(len(self._marker[0])):
-                result += str(self._marker[i][j])
-                result += " "
+                result += str(self._marker[i][j]) + " "
             result = result.strip(" ")
             result += "\n"
 
         result = result.strip("\n")
+
         return result
 
     def __eq__(self, other):

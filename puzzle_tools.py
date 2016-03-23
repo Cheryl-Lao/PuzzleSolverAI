@@ -3,34 +3,14 @@ Some functions for working with puzzles
 """
 from puzzle import Puzzle
 from collections import deque
+from grid_peg_solitaire_puzzle import *  # TODO REMOVE THESE IMPORTS AFTER TESTING
+from word_ladder_puzzle import *
 # set higher recursion limit
 # which is needed in PuzzleNode.__str__
 # import resource
 import sys
 # resource.setrlimit(resource.RLIMIT_STACK, (2**29, -1))
 sys.setrecursionlimit(10**6)
-
-
-def gather_lists(list_):
-    """
-    Return the concatenation of the sublists of list_.
-
-    @param list[list] list_: list of sublists
-    @rtype: list
-
-    Algorithm from answer on http://stackoverflow.com/questions/12472338/flattening-a-list-recursively
-
-    >>> list_ = [[1, 2], [3, 4]]
-    >>> gather_lists(list_)
-    [1, 2, 3, 4]
-    """
-
-    if not list_:
-        return list_
-    if isinstance(list_[0], list):
-        return gather_lists(list_[0]) + gather_lists(list_[1:])
-
-    return list_[:1] + list_[1:]
 
 # TODO
 # implement depth_first_solve
@@ -47,45 +27,83 @@ def depth_first_solve(puzzle):
 
     @type puzzle: Puzzle
     @rtype: PuzzleNode | None
+
+    >>> tester1 = WordLadderPuzzle("cast", "vase", {"case", "cast", "vase"})
+    >>> depth_first_solve(tester1)
+    "PLEASE AT LEAST DO SOMETHING"
+
+    >>> tester = GridPegSolitairePuzzle([[".", ".", "."], ["*", "*", "."],\
+                                        ["*", "*", "."]], {".", "#", "*"})
+    >>> depth_first_solve(tester)
+    "I'M PRAYING RIGHT NOW"
     """
 
     seen = set()
+    # This is the solution. I'm going backwards to construct a linked list
+    # of PuzzleNodes where the returned node and all of its children only
+    # have one child, eventually leading to the solution
+    stop = []
+    solution_node = depth_helper(puzzle, seen, stop)
 
-    return depth_helper(puzzle, seen)
+    if solution_node:
+        # Going backwards in the linked list to make
+        while solution_node.parent:
+            solution_node.parent.children = [solution_node.puzzle]
+            solution_node = solution_node.parent
+
+        # Making the top node's children only point in the path of the solution
+        solution_node.parent.children = [solution_node]
+        return solution_node.parent
+
+    else:
+        return None
 
 
-def depth_helper(puzzle, seen):
+def depth_helper(puzzle, seen, stop_it):
     """
     :param puzzle: Puzzle
     :param seen: set[str]
-    :return: PuzzleNode
+    :param stop_it: list[bool]
+    :return: PuzzleNode | None
     """
+
+    if stop_it:
+        return None
 
     new_puzzle_node = PuzzleNode(puzzle)
 
-    new_puzzle_node.children = \
-        [PuzzleNode(child) for child in new_puzzle_node.puzzle.extensions()]
-
-    for child in new_puzzle_node.children:
-        child.parent = new_puzzle_node
-
+    # So that we don't visit this configuration again
     seen.add(str(new_puzzle_node.puzzle))
 
+    # Base Cases vvv
     if new_puzzle_node.puzzle.is_solved():
+        stop_it .append(True)
         return new_puzzle_node
 
     elif new_puzzle_node.puzzle.fail_fast():
         return None
+    # Base Cases ^^^
+
+    temp_children = puzzle.extensions()
+    new_puzzle_node.children = []
 
     # Since failfast checks for children, it can't get down to here without
-        # having children
-        # Look for solutions in each branch
-    for child in new_puzzle_node.children:
+    # having children
+
+    # Look for solutions in each branch
+    for child in temp_children:
         # This will return the first leaf that is not None
         # (so it's a solution) and exit the loop
-        if depth_helper(new_puzzle_node.puzzle, seen) is not None \
+        if str(child) not in seen:
+            new_puzzle_node.children.append(PuzzleNode(child,
+                                                   child.extensions(),
+                                                   new_puzzle_node))
+
+        new_depth = depth_helper(child, seen, stop_it)
+
+        if new_depth is not None \
                 and str(child) not in seen:
-            return depth_helper(child, seen)
+            return new_depth
 
 
 def breadth_first_solve(puzzle):
@@ -106,26 +124,27 @@ def breadth_first_solve(puzzle):
 # we imported deque
     """
     # TODO
+    new_puzzle_node = PuzzleNode(puzzle)
     to_check = deque()
-    to_check.append(puzzle)
+    to_check.append(new_puzzle_node)
     seen = []
 
     while to_check:
-        puzzle_config = to_check.popleft()
-        if puzzle_config.fail_fast():
+        puzzle_node = to_check.popleft()
+        if puzzle_node.puzzle.fail_fast():
             return None
-        if puzzle_config not in seen:
+        if puzzle_node not in seen:
             # Check if the puzzle configuration is a solution
             # and return it straight away if it is
-            if puzzle_config.is_solved():
-                return puzzle_config
+            if puzzle_node.puzzle.is_solved():
+                return puzzle_node
 
-            if puzzle_config.extensions():
+            if puzzle_node.puzzle.extensions():
                 # If there are extensions add children all at once to the queue
-                for extension in puzzle_config.extensions():
-                    extension.parent = puzzle_config
-                    to_check.append(extension)
-            seen.append(puzzle_config)
+                for extension in puzzle_node.puzzle.extensions():
+                    new_node = PuzzleNode(extension, None, puzzle_node)
+                    to_check.append(new_node)
+            seen.append(puzzle_node)
 
     # If it gets to this line it means that there were no solutions found at all
     return None
