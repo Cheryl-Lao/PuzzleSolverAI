@@ -39,21 +39,7 @@ def depth_first_solve(puzzle):
     # of PuzzleNodes where the returned node and all of its children only
     # have one child, eventually leading to the solution
 
-    solution_node = depth_helper(puzzle, seen)
-
-    # If there are actually answers found by the helper
-    if solution_node:
-        # Going backwards in the linked list to make
-        while solution_node.parent:
-            solution_node.parent.children = [solution_node.puzzle]
-            solution_node = solution_node.parent
-
-        # Making the top node's children only point in the path of the solution
-        solution_node.children = [solution_node]
-        return solution_node
-
-    else:
-        return None
+    return depth_helper(puzzle, seen)
 
 
 def depth_helper(puzzle, seen, parent = None):
@@ -90,29 +76,41 @@ def depth_helper(puzzle, seen, parent = None):
     #     # It should never get here so:
     #     print("For some reason it got to the last case in depth first search")
 
-# TODO YO IT'S BECAUSE WE'RE TAKING IN A PUZZLE THEN RETURNING A PUZZLENODE IN THE RECURSIVE CALLLLL..... wait no. that's not an issue
     new_node = PuzzleNode(puzzle, [], parent)
-
     seen.add(str(puzzle))
 
-    for ex in puzzle.extensions():
-        #print(str(ex), "jdkcjkukjsd")
-        if str(ex) not in seen:
-         #   print(str(ex), "lkjhgfgyhghj")
-            new_node.children.append(PuzzleNode(ex, [], new_node))
-
     if puzzle.is_solved():
-            return PuzzleNode(puzzle, [], parent)
+        print("solved!!")
+        return PuzzleNode(puzzle, [], parent)
 
     elif puzzle.fail_fast():
+        print("It failed :(")
         return None
 
+    for ex in puzzle.extensions():
+
+        if str(ex) not in seen:
+            new_node.children.append(PuzzleNode(ex, [], new_node))
+        seen.add(str(ex))
+
     for child in new_node.children:
-        if str(child.puzzle) not in seen:
-            return depth_helper(child.puzzle, seen, new_node)
+        print(str(child.puzzle), len(seen))
+        solution_node = depth_helper(child.puzzle, seen, new_node)
+
+        if solution_node is not None:
+            # Going backwards in the linked list to find the root and disown children
+            if solution_node.parent:
+                solution_node.parent.children = [solution_node.puzzle]
+                solution_node = solution_node.parent
+
+            # Making the top node's children only point in the path of the solution
+            solution_node.children = [solution_node]
+            return solution_node
 
     else:
         return None
+
+
 
 
 def breadth_first_solve(puzzle):

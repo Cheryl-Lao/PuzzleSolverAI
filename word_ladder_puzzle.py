@@ -122,8 +122,9 @@ class WordLadderPuzzle(Puzzle):
                     word_list.append(from_word[:i] + q + from_word[i + 1:])
 
             for word in word_list:
-                if word in ws and (word not in good_words) and word != from_word:
+                if (word in ws) and (not word in good_words) and (word != from_word):
                     good_words.append(word)
+
         return [WordLadderPuzzle(q, to_word, ws) for q in good_words]
 
     def is_solved(self):
