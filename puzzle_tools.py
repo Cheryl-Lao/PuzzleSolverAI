@@ -44,6 +44,7 @@ def depth_first_solve(puzzle):
 
     solution_node = depth_helper(puzzle, seen)
 
+    # If there are actually answers found by the helper
     if solution_node:
         # Going backwards in the linked list to make
         while solution_node.parent:
@@ -87,18 +88,25 @@ def depth_helper(puzzle, seen, parent = None):
     #     print("For some reason it got to the last case in depth first search")
 
     new_node = PuzzleNode(puzzle, [], parent)
+    for ex in puzzle.extensions():
+        new_node.children.append(PuzzleNode(ex, [], new_node))
 
-    if puzzle.extensions() and not puzzle.fail_fast():
+    if puzzle.is_solved():
+            return PuzzleNode(puzzle, [], parent)
+
+    elif (not puzzle.fail_fast()) and puzzle.extensions():
         for extension in puzzle.extensions():
-            possible_solution = depth_helper(extension, seen, new_node)
-            if possible_solution is not None:
-                return possible_solution
+            possible_sol = depth_helper(extension, seen, new_node)
+            if str(extension) not in seen and possible_sol is not None and str(possible_sol) not in seen:
+                # possible_solution = depth_helper(extension, seen, new_node)
+                # if possible_solution is not None and \
+                #             str(possible_solution) not in seen:
+                #     return possible_solution
+                return depth_helper(extension, seen, new_node)
 
     else:
-        if puzzle.is_solved():
-            return PuzzleNode(puzzle, [], parent)
-        else:
-            return None
+        return None
+
 
 def breadth_first_solve(puzzle):
     """

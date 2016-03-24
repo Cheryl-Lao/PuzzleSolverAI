@@ -95,6 +95,11 @@ class GridPegSolitairePuzzle(Puzzle):
         >>> sample4 = GridPegSolitairePuzzle(grid4, {"*", ".", "#"})
         >>> for sample in sample4.extensions(): print(sample, "END")
 
+        >>> grid5 = [['.', '.', '.'], ['*', '*', '.']]
+        >>> sample5 = GridPegSolitairePuzzle(grid5, {"*", ".", "#"})
+        >>> for sample in sample5.extensions(): print(sample, "END")
+        . . .
+        . . * END
         """
 
         result = []
@@ -230,14 +235,27 @@ class GridPegSolitairePuzzle(Puzzle):
 
         :return:
         :rtype: bool
+
+        >>> grid5 = [['.', '.', '.'], ['*', '*', '.']]
+        >>> sample5 = GridPegSolitairePuzzle(grid5, {"*", ".", "#"})
+        >>> sample5.fail_fast()
+        False
+        >>> grid6 = [['.', '.', '.'], ['.', '*', '.']]
+        >>> sample6 = GridPegSolitairePuzzle(grid6, {"*", ".", "#"})
+        >>> sample6.fail_fast()
+        True
         """
 
         empty_spaces = self.list_empty_spaces()
+
         for space in empty_spaces:
             for direction in ["N", "E", "S", "W"]:
-                if self.neighbour_at(space, direction) == "*":
-                    return True
-        return False
+                neighbour = self.neighbour_at(space, direction)
+                if neighbour is not None and neighbour[1] == "*":
+                    next_neighbour = self.neighbour_at(neighbour[0], direction)
+                    if next_neighbour is not None and next_neighbour[1] == "*":
+                        return False
+        return True
 
     def is_solved(self):
         """
