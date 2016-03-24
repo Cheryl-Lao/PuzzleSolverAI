@@ -215,39 +215,39 @@ class SudokuPuzzle(Puzzle):
 
         """
 
-        failed = True
+        # Take the union of the things from row, col and square
+        possible = set()
 
-        if len(self.extensions()) == 0:
-            return failed
+        original_set = self._symbol_set
 
-        else:
-            # Take the union of the things from row, col and square
-            possible = set()
 
-            for i in range(len(self._symbols)):
-                original_set = self._symbol_set
+        for i in range(len(self._symbols)):
 
-                if self._symbols[i] == "*":
+            if self._symbols[i] == "*":
 
-                    possible_row = original_set - self._row_set(i)
+                possible_row = original_set - self._row_set(i)
 
-                    possible_col = original_set - self._column_set(i)
+                possible_col = original_set - self._column_set(i)
 
-                    possible_subspace = original_set - self._subsquare_set(i)
+                possible_subspace = original_set - self._subsquare_set(i)
 
-                    possible = possible_row & possible_col & possible_subspace
+                possible = possible_row & possible_col & possible_subspace
 
-                    for possible_sol in possible:
-                        copied = self._symbols[:]
-                        copied[i] = possible_sol
-                        new_sudoku_child = \
-                            SudokuPuzzle(self._n, copied, self._symbol_set)
-                        if new_sudoku_child.extensions() or \
-                                new_sudoku_child.is_solved():
-                            # If even one of the children has children or is
-                            # solvable then it hasn't failed yet
-                            return False
-        return failed
+                if len(possible) == 0:
+                    return True
+
+                for possible_sol in possible:
+                    copied = self._symbols[:]
+                    copied[i] = possible_sol
+                    new_sudoku_child = \
+                        SudokuPuzzle(self._n, copied, self._symbol_set)
+
+                    if new_sudoku_child.is_solved():
+                        # If even one of the children has children or is
+                        # solvable then it hasn't failed yet
+                        return False
+
+        return True
 
     # some helper methods
     def _row_set(self, m):
