@@ -24,7 +24,7 @@
       <file leaf-file-name="grid_peg_solitaire_puzzle.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grid_peg_solitaire_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
               <folding />
             </state>
@@ -34,8 +34,8 @@
       <file leaf-file-name="puzzle_tools.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/puzzle_tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34698796">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state vertical-scroll-proportion="-1.8832998">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -54,7 +54,7 @@
       <file leaf-file-name="mn_puzzle.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mn_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.7272725">
+            <state vertical-scroll-proportion="0.0">
               <caret line="43" column="10" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="10" />
               <folding />
             </state>
@@ -75,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/sudoku_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="375" column="15" selection-start-line="375" selection-start-column="15" selection-end-line="375" selection-end-column="15" />
+              <caret line="233" column="69" selection-start-line="233" selection-start-column="69" selection-end-line="233" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -108,10 +108,10 @@
       <list>
         <option value="$PROJECT_DIR$/resource.py" />
         <option value="$PROJECT_DIR$/puzzle.py" />
-        <option value="$PROJECT_DIR$/sudoku_puzzle.py" />
         <option value="$PROJECT_DIR$/mn_puzzle.py" />
         <option value="$PROJECT_DIR$/grid_peg_solitaire_puzzle.py" />
         <option value="$PROJECT_DIR$/word_ladder_puzzle.py" />
+        <option value="$PROJECT_DIR$/sudoku_puzzle.py" />
         <option value="$PROJECT_DIR$/puzzle_tools.py" />
       </list>
     </option>
@@ -380,8 +380,8 @@
         <item index="0" class="java.lang.String" itemvalue="Python tests.Doctests in puzzle_tools" />
         <item index="1" class="java.lang.String" itemvalue="Python.sudoku_puzzle" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.Doctests in sudoku_puzzle" />
-        <item index="3" class="java.lang.String" itemvalue="Python.grid_peg_solitaire_puzzle" />
-        <item index="4" class="java.lang.String" itemvalue="Python.word_ladder_puzzle" />
+        <item index="3" class="java.lang.String" itemvalue="Python.word_ladder_puzzle" />
+        <item index="4" class="java.lang.String" itemvalue="Python.grid_peg_solitaire_puzzle" />
       </list>
     </recent_temporary>
   </component>
@@ -399,34 +399,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 20h 37m 22s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 23h 52m 23s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 20h 39m 22s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 23h 52m 54s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 20h 43m 49s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 23h 53m 08s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 20h 44m 44s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 23h 55m 25s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 21h 04m 47s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 23h 57m 16s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 21h 05m 35s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 23h 58m 03s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 21h 05m 52s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 23h 58m 17s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 21h 06m 31s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 00m 48s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 21h 44m 27s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 03m 14s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.23 at 21h 45m 16s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 03m 28s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
   </component>
@@ -440,7 +440,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1918" height="1018" extended-state="1" />
+    <frame x="1" y="1" width="1918" height="1018" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12241653" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -448,7 +448,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278481" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923833" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4278481" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32405064" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923833" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -850,41 +850,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/docrunner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4469026">
+        <state vertical-scroll-proportion="0.3325301">
           <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sudoku_puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="375" column="15" selection-start-line="375" selection-start-column="15" selection-end-line="375" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mn_puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.7272725">
-          <caret line="43" column="10" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grid_peg_solitaire_puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.0">
-          <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -897,10 +866,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sudoku_puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="233" column="69" selection-start-line="233" selection-start-column="69" selection-end-line="233" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mn_puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="10" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grid_peg_solitaire_puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/puzzle_tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34698796">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state vertical-scroll-proportion="-1.8832998">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>
