@@ -30,6 +30,7 @@ def depth_first_solve(puzzle):
 
     >>> tester1 = WordLadderPuzzle("cast", "vase", {"case", "cast", "vase"})
     >>> depth_first_solve(tester1)
+
     "PLEASE AT LEAST DO SOMETHING"
 
     >>> tester = GridPegSolitairePuzzle([[".", ".", "."], ["*", "*", "."],\
@@ -42,8 +43,8 @@ def depth_first_solve(puzzle):
     # This is the solution. I'm going backwards to construct a linked list
     # of PuzzleNodes where the returned node and all of its children only
     # have one child, eventually leading to the solution
-    stop = []
-    solution_node = depth_helper(puzzle, seen, stop)
+
+    solution_node = depth_helper(puzzle, seen)
 
     if solution_node:
         # Going backwards in the linked list to make
@@ -52,58 +53,82 @@ def depth_first_solve(puzzle):
             solution_node = solution_node.parent
 
         # Making the top node's children only point in the path of the solution
-        solution_node.parent.children = [solution_node]
-        return solution_node.parent
+        solution_node.children = [solution_node]
+        return solution_node
 
     else:
         return None
 
+#
+# def depth_helper(puzzle, seen):
+#     """
+#     :param puzzle: Puzzle
+#     :param seen: set[str]
+#
+#     :return: PuzzleNode | None
+#     """
+#
+#     new_puzzle_node = PuzzleNode(puzzle)
+#
+#     # So that we don't visit this configuration again
+#     seen.add(str(new_puzzle_node.puzzle))
+#
+#     # Base Cases vvv
+#     if new_puzzle_node.puzzle.is_solved():
+#
+#         return new_puzzle_node
+#
+#     elif new_puzzle_node.puzzle.fail_fast():
+#         return None
+#     # Base Cases ^^^
+#
+#     temp_children = puzzle.extensions()
+#     new_puzzle_node.children = []
+#
+#     # Since failfast checks for children, it can't get down to here without
+#     # having children
+#
+#     # Look for solutions in each branch
+#     for child in temp_children:
+#
+#         # This will return the first leaf that is not None
+#         # (so it's a solution) and exit the loop
+#         if str(child) not in seen:
+#             new_puzzle_node.children.append(PuzzleNode(child,
+#                                                    child.extensions(),
+#                                                    new_puzzle_node))
+#
+#         new_depth = depth_helper(child, seen)
+#
+#         if new_depth is not None and str(child) not in seen:
+#             return new_depth
 
-def depth_helper(puzzle, seen, stop_it):
-    """
-    :param puzzle: Puzzle
-    :param seen: set[str]
-    :param stop_it: list[bool]
-    :return: PuzzleNode | None
-    """
 
-    if stop_it:
-        return None
+def depth_helper(puzzle, seen):
+    # @type puzzle: Puzzle
+    # @rtype: PuzzleNode | None
+    # depth_helper(puzzle, seen)
 
     new_puzzle_node = PuzzleNode(puzzle)
-
-    # So that we don't visit this configuration again
     seen.add(str(new_puzzle_node.puzzle))
+    if puzzle.is_solved():
+        return PuzzleNode(puzzle, puzzle.extensions())
 
-    # Base Cases vvv
-    if new_puzzle_node.puzzle.is_solved():
-        stop_it .append(True)
-        return new_puzzle_node
-
-    elif new_puzzle_node.puzzle.fail_fast():
+    elif puzzle.fail_fast():
         return None
-    # Base Cases ^^^
 
-    temp_children = puzzle.extensions()
-    new_puzzle_node.children = []
+    elif puzzle.extensions():
+        temp_children = puzzle.extensions()
+        new_puzzle_node.children = []
 
-    # Since failfast checks for children, it can't get down to here without
-    # having children
-
-    # Look for solutions in each branch
-    for child in temp_children:
-        # This will return the first leaf that is not None
-        # (so it's a solution) and exit the loop
-        if str(child) not in seen:
-            new_puzzle_node.children.append(PuzzleNode(child,
-                                                   child.extensions(),
-                                                   new_puzzle_node))
-
-        new_depth = depth_helper(child, seen, stop_it)
-
-        if new_depth is not None \
-                and str(child) not in seen:
-            return new_depth
+        for child in temp_children:
+            if str(child) not in seen:
+                child_node = PuzzleNode(child, [], new_puzzle_node)
+                new_depth = depth_helper(child, seen)
+                return new_depth
+    else:
+        # It should never get here so:
+        print("For some reason it got to the last case in depth first search")
 
 
 def breadth_first_solve(puzzle):

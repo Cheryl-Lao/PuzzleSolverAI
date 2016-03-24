@@ -232,9 +232,11 @@ class GridPegSolitairePuzzle(Puzzle):
         :rtype: bool
         """
 
-        if not self.extensions():
-            return True
-
+        empty_spaces = self.list_empty_spaces()
+        for space in empty_spaces:
+            for direction in ["N", "E", "S", "W"]:
+                if self.neighbour_at(space, direction) == "*":
+                    return True
         return False
 
     def is_solved(self):

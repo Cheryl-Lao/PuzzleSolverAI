@@ -126,7 +126,6 @@ class WordLadderPuzzle(Puzzle):
                     good_words.append(word)
         return [WordLadderPuzzle(q, to_word, ws) for q in good_words]
 
-
     def is_solved(self):
             # TODO
         # override is_solved
@@ -147,7 +146,6 @@ class WordLadderPuzzle(Puzzle):
         """
 
         return self._from_word == self._to_word
-
 
 if __name__ == '__main__':
     import doctest
