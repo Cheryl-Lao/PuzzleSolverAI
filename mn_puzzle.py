@@ -55,9 +55,10 @@ class MNPuzzle(Puzzle):
 
     def __str__(self):
         """
-        :return:
-        :rtype: str
+
         Return a human-readable string representation of MNPuzzle self.
+        :type self: MNPuzzle
+        :rtype: str
 
         >>> target_grid = (("1", "2", "3"), ("4", "5", "*"))
         >>> start_grid = (("*", "2", "3"), ("1", "4", "5"))
@@ -109,6 +110,19 @@ class MNPuzzle(Puzzle):
         True
         >>> all([s in L1 for s in L2])
         True
+        >>> start_grid2 = (("1", "2", "3"), ("*", "5", "6"), ("7", "8", "9"))
+        >>> target = ((" ", " ", " "), (" ", " ", " "), (" ", " ", " "))
+        >>> example = MNPuzzle(start_grid2, target)
+        >>> for ex in example.extensions(): print(ex, "END")
+        * 2 3
+        1 5 6
+        7 8 9 END
+        1 2 3
+        5 * 6
+        7 8 9 END
+        1 2 3
+        7 5 6
+        * 8 9 END
         """
 
         extensions = []
@@ -164,6 +178,13 @@ class MNPuzzle(Puzzle):
         >>> print(p)
         2 * 3
         1 4 5
+        >>> start_grid2 = (("1", "2"), ("3", "*"))
+        >>> target_grid2 = (("1", "*"), ("3", "2"))
+        >>> mn2 = MNPuzzle(start_grid2, target_grid2)
+        >>> p2 = mn2.swap_direction([1, 1], "N")
+        >>> print(p2)
+        1 *
+        3 2
         """
 
         found = False
@@ -213,7 +234,7 @@ class MNPuzzle(Puzzle):
         Return the position of the first occurrence of obj in self.from_grid
 
         :type obj: any
-        :rtype: list[int, int]
+        :rtype: list[int, int] | str
 
         >>> target_grid = (("1", "2", "3"), ("4", "5", "*"))
         >>> start_grid = (("*", "2", "3"), ("1", "4", "5"))
@@ -225,7 +246,8 @@ class MNPuzzle(Puzzle):
         for i in range (self.n):
             for j in range (self.m):
                 if self.from_grid[i][j] == obj:
-                    return [i, j]
+                    return [j, i]
+
         return "error: object not in grid"
 
 

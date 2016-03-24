@@ -24,18 +24,18 @@
       <file leaf-file-name="grid_peg_solitaire_puzzle.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grid_peg_solitaire_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="250" column="34" selection-start-line="250" selection-start-column="34" selection-end-line="250" selection-end-column="34" />
+            <state vertical-scroll-proportion="-35.772728">
+              <caret line="197" column="30" selection-start-line="197" selection-start-column="30" selection-end-line="197" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="puzzle_tools.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="puzzle_tools.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/puzzle_tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.142857">
-              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+            <state vertical-scroll-proportion="-11.863636">
+              <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -45,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+              <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -55,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/mn_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="10" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="10" />
+              <caret line="298" column="18" selection-start-line="298" selection-start-column="18" selection-end-line="298" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -71,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sudoku_puzzle.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sudoku_puzzle.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sudoku_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="233" column="69" selection-start-line="233" selection-start-column="69" selection-end-line="233" selection-end-column="69" />
+            <state vertical-scroll-proportion="2.6872587">
+              <caret line="308" column="22" selection-start-line="308" selection-start-column="22" selection-end-line="308" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -85,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/word_ladder_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+              <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -107,12 +107,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/resource.py" />
-        <option value="$PROJECT_DIR$/puzzle.py" />
-        <option value="$PROJECT_DIR$/mn_puzzle.py" />
         <option value="$PROJECT_DIR$/sudoku_puzzle.py" />
         <option value="$PROJECT_DIR$/grid_peg_solitaire_puzzle.py" />
         <option value="$PROJECT_DIR$/word_ladder_puzzle.py" />
         <option value="$PROJECT_DIR$/puzzle_tools.py" />
+        <option value="$PROJECT_DIR$/puzzle.py" />
+        <option value="$PROJECT_DIR$/mn_puzzle.py" />
       </list>
     </option>
   </component>
@@ -156,24 +156,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Python.word_ladder_puzzle">
-    <configuration default="false" name="grid_peg_solitaire_puzzle" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PuzzleSolverAI" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/grid_peg_solitaire_puzzle.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.sudoku_puzzle">
     <configuration default="false" name="word_ladder_puzzle" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -191,7 +174,43 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Doctests in sudoku_puzzle" type="tests" factoryName="Doctests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="mn_puzzle" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PuzzleSolverAI" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mn_puzzle.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Doctests in mn_puzzle" type="tests" factoryName="Doctests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PuzzleSolverAI" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mn_puzzle.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="sudoku_puzzle" type="tests" factoryName="Doctests" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -227,23 +246,6 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="sudoku_puzzle" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PuzzleSolverAI" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sudoku_puzzle.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -369,19 +371,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.grid_peg_solitaire_puzzle" />
-      <item index="1" class="java.lang.String" itemvalue="Python.word_ladder_puzzle" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Doctests in sudoku_puzzle" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Doctests in puzzle_tools" />
-      <item index="4" class="java.lang.String" itemvalue="Python.sudoku_puzzle" />
+      <item index="0" class="java.lang.String" itemvalue="Python.word_ladder_puzzle" />
+      <item index="1" class="java.lang.String" itemvalue="Python.mn_puzzle" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Doctests in mn_puzzle" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.sudoku_puzzle" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Doctests in puzzle_tools" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.word_ladder_puzzle" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Doctests in puzzle_tools" />
-        <item index="2" class="java.lang.String" itemvalue="Python.grid_peg_solitaire_puzzle" />
-        <item index="3" class="java.lang.String" itemvalue="Python.sudoku_puzzle" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Doctests in sudoku_puzzle" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.sudoku_puzzle" />
+        <item index="1" class="java.lang.String" itemvalue="Python.mn_puzzle" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Doctests in mn_puzzle" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Doctests in puzzle_tools" />
+        <item index="4" class="java.lang.String" itemvalue="Python.word_ladder_puzzle" />
       </list>
     </recent_temporary>
   </component>
@@ -399,35 +401,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 33m 43s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 13m 29s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 34m 10s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 13m 41s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 35m 09s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 13m 52s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 36m 29s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 14m 41s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 36m 51s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 15m 59s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 37m 30s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 16m 22s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 38m 42s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 19m 47s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 38m 55s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 20m 54s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 39m 34s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="Doctests_in_mn_puzzle - 2016.03.24 at 17h 23m 00s.xml">
+      <configuration name="Doctests in mn_puzzle" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 12h 28m 52s.xml">
-      <configuration name="Doctests in puzzle_tools" configurationId="tests" />
+    <history-entry file="sudoku_puzzle - 2016.03.24 at 17h 25m 13s.xml">
+      <configuration name="sudoku_puzzle" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -440,7 +442,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12241653" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -448,7 +450,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3144963" sideWeight="0.5018548" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32678133" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923833" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3181818" sideWeight="0.4981452" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18673219" sideWeight="0.4981452" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923833" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -497,28 +499,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>78</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>95</line>
+          <line>146</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>96</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>97</line>
+          <line>149</line>
           <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>41</line>
-          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="46" />
@@ -862,14 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/words">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/doctest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
@@ -884,10 +863,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sudoku_puzzle.py">
+    <entry file="file://$PROJECT_DIR$/word_ladder_puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="233" column="69" selection-start-line="233" selection-start-column="69" selection-end-line="233" selection-end-column="69" />
+          <caret line="138" column="20" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grid_peg_solitaire_puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-35.772728">
+          <caret line="197" column="30" selection-start-line="197" selection-start-column="30" selection-end-line="197" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/puzzle_tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.863636">
+          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/words">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -895,15 +898,7 @@
     <entry file="file://$PROJECT_DIR$/mn_puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="10" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grid_peg_solitaire_puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="250" column="34" selection-start-line="250" selection-start-column="34" selection-end-line="250" selection-end-column="34" />
+          <caret line="298" column="18" selection-start-line="298" selection-start-column="18" selection-end-line="298" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -911,23 +906,15 @@
     <entry file="file://$PROJECT_DIR$/puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/word_ladder_puzzle.py">
+    <entry file="file://$PROJECT_DIR$/sudoku_puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/puzzle_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.142857">
-          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.6872587">
+          <caret line="308" column="22" selection-start-line="308" selection-start-column="22" selection-end-line="308" selection-end-column="22" />
           <folding />
         </state>
       </provider>

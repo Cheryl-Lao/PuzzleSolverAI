@@ -40,7 +40,6 @@ class Puzzle:
         """
         raise NotImplementedError
 
-
     def grid_string(self, grid):
 
         result = ""

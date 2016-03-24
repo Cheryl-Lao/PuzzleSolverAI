@@ -29,8 +29,8 @@ def depth_first_solve(puzzle):
     @rtype: PuzzleNode | None
 
     >>> tester1 = WordLadderPuzzle("cast", "vase", {"case", "cast", "vase"})
-    >>> depth_first_solve(tester1).children[0].puzzle._from_word
-    'cast'
+    >>> print(depth_first_solve(tester1))
+    'vase'
 
     """
 
@@ -38,79 +38,59 @@ def depth_first_solve(puzzle):
     # This is the solution. I'm going backwards to construct a linked list
     # of PuzzleNodes where the returned node and all of its children only
     # have one child, eventually leading to the solution
+    node = PuzzleNode(puzzle)
+    solution = depth_helper(node, seen)
+    #
+    # if solution is not None:
+    #     while solution.parent:
+    #         solution.parent.children = [solution]
+    #         solution = solution.parent
 
-    return depth_helper(puzzle, seen)
+    return solution
 
 
-def depth_helper(puzzle, seen, parent = None):
+def depth_helper(puzzleNode, seen):
     """
-    :param puzzle: Puzzle
+    :param puzzleNode: PuzzleNode
     :param seen: set[str]
 
     :return: PuzzleNode | None
 
     >>> tester = GridPegSolitairePuzzle([[".", ".", "."], ["*", "*", "."]], {".", "*", "#"})
     >>> seen = set()
-    >>> print(depth_helper(tester, seen).puzzle)
+    >>> tester_node = PuzzleNode(tester)
+    >>> print(depth_helper(tester_node, seen))
     . . .
     . . *
     """
-    # new_puzzle_node = PuzzleNode(puzzle)
-    # seen.add(str(new_puzzle_node.puzzle))
-    # if puzzle.is_solved():
-    #     return PuzzleNode(puzzle, puzzle.extensions())
-    #
-    # elif puzzle.fail_fast():
-    #     return None
-    #
-    # elif puzzle.extensions():
-    #     temp_children = puzzle.extensions()
-    #     new_puzzle_node.children = []
-    #
-    #     for child in temp_children:
-    #         if str(child) not in seen:
-    #             child_node = PuzzleNode(child, [], new_puzzle_node)
-    #             new_depth = depth_helper(child, seen)
-    #             return new_depth
-    # else:
-    #     # It should never get here so:
-    #     print("For some reason it got to the last case in depth first search")
 
-    new_node = PuzzleNode(puzzle, [], parent)
-    seen.add(str(puzzle))
+    seen.add(str(puzzleNode.puzzle))
 
-    if puzzle.is_solved():
-        print("solved!!")
-        return PuzzleNode(puzzle, [], parent)
+    if puzzleNode.puzzle.is_solved():
+        # print("solved!!")
+        return puzzleNode
 
-    elif puzzle.fail_fast():
-        print("It failed :(")
+    elif puzzleNode.puzzle.fail_fast():
         return None
 
-    for ex in puzzle.extensions():
+    for ex in puzzleNode.puzzle.extensions():
 
         if str(ex) not in seen:
-            new_node.children.append(PuzzleNode(ex, [], new_node))
+            puzzleNode.children.append(PuzzleNode(ex, [], puzzleNode))
         seen.add(str(ex))
 
-    for child in new_node.children:
-        print(str(child.puzzle), len(seen))
-        solution_node = depth_helper(child.puzzle, seen, new_node)
+    for child in puzzleNode.children:
+        solution_node = depth_helper(child, seen)
 
         if solution_node is not None:
             # Going backwards in the linked list to find the root and disown children
             if solution_node.parent:
-                solution_node.parent.children = [solution_node.puzzle]
-                solution_node = solution_node.parent
+                solution_node.parent.children = [solution_node]
 
-            # Making the top node's children only point in the path of the solution
-            solution_node.children = [solution_node]
-            return solution_node
+            return solution_node.parent
 
     else:
         return None
-
-
 
 
 def breadth_first_solve(puzzle):
@@ -134,25 +114,34 @@ def breadth_first_solve(puzzle):
     new_puzzle_node = PuzzleNode(puzzle)
     to_check = deque()
     to_check.append(new_puzzle_node)
-    seen = []
+    seen = set()
 
     while to_check:
         puzzle_node = to_check.popleft()
         if puzzle_node.puzzle.fail_fast():
             return None
-        if puzzle_node not in seen:
+        if str(puzzle_node.puzzle) not in seen:
             # Check if the puzzle configuration is a solution
             # and return it straight away if it is
             if puzzle_node.puzzle.is_solved():
+                # Need to set the right path for this node so it only moves
+                # toward solution
+                # Going backwards in the linked list to make
+                while puzzle_node.parent:
+                    puzzle_node.parent.children = [puzzle_node]
+                    puzzle_node = puzzle_node.parent
+
                 return puzzle_node
 
             if puzzle_node.puzzle.extensions():
                 # If there are extensions add children all at once to the queue
                 for extension in puzzle_node.puzzle.extensions():
                     new_node = PuzzleNode(extension, None, puzzle_node)
-                    if new_node not in seen:
+                    puzzle_node.children.append(new_node)
+
+                    if str(new_node.puzzle) not in seen:
                         to_check.append(new_node)
-            seen.append(puzzle_node)
+            seen.add(str(puzzle_node.puzzle))
 
     # If it gets to this line it means that there were no solutions found at all
     return None
