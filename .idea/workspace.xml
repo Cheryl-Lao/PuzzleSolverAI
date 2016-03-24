@@ -25,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/grid_peg_solitaire_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="249" column="0" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+              <caret line="250" column="34" selection-start-line="250" selection-start-column="34" selection-end-line="250" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -34,8 +34,8 @@
       <file leaf-file-name="puzzle_tools.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/puzzle_tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28598848">
-              <caret line="46" column="55" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.62741315">
+              <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -85,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/word_ladder_puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="55" selection-start-line="54" selection-start-column="55" selection-end-line="54" selection-end-column="55" />
+              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -156,7 +156,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Python.grid_peg_solitaire_puzzle">
+  <component name="RunManager" selected="Python.word_ladder_puzzle">
     <configuration default="false" name="grid_peg_solitaire_puzzle" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -377,9 +377,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.grid_peg_solitaire_puzzle" />
+        <item index="0" class="java.lang.String" itemvalue="Python.word_ladder_puzzle" />
         <item index="1" class="java.lang.String" itemvalue="Python tests.Doctests in puzzle_tools" />
-        <item index="2" class="java.lang.String" itemvalue="Python.word_ladder_puzzle" />
+        <item index="2" class="java.lang.String" itemvalue="Python.grid_peg_solitaire_puzzle" />
         <item index="3" class="java.lang.String" itemvalue="Python.sudoku_puzzle" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Doctests in sudoku_puzzle" />
       </list>
@@ -399,34 +399,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 03m 14s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 33m 11s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 03m 28s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 33m 43s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 33m 28s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 34m 10s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 35m 59s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 35m 09s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 42m 16s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 36m 29s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 00h 48m 39s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 36m 51s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 07h 13m 56s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 37m 30s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 07h 16m 31s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 38m 42s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 07h 19m 49s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 38m 55s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 07h 19m 52s.xml">
+    <history-entry file="Doctests_in_puzzle_tools - 2016.03.24 at 11h 39m 34s.xml">
       <configuration name="Doctests in puzzle_tools" configurationId="tests" />
     </history-entry>
   </component>
@@ -440,15 +440,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12241653" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923833" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3144963" sideWeight="0.5018548" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278481" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32678133" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923833" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3144963" sideWeight="0.4981452" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3181818" sideWeight="0.4981452" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923833" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -497,97 +497,92 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>89</line>
+          <line>93</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>90</line>
+          <line>97</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>91</line>
+          <line>101</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>96</line>
+          <line>108</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>97</line>
+          <line>109</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>99</line>
+          <line>110</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>98</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>104</line>
+          <line>111</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>106</line>
+          <line>113</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>107</line>
+          <line>114</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>44</line>
+          <line>41</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>47</line>
+          <line>44</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>49</line>
+          <line>46</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>50</line>
+          <line>47</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>51</line>
+          <line>48</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>54</line>
+          <line>51</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>55</line>
+          <line>52</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>57</line>
+          <line>54</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/puzzle_tools.py</url>
-          <line>58</line>
+          <line>55</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
@@ -970,14 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/word_ladder_puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="55" selection-start-line="54" selection-start-column="55" selection-end-line="54" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -986,18 +973,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/word_ladder_puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/grid_peg_solitaire_puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="249" column="0" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
+          <caret line="250" column="34" selection-start-line="250" selection-start-column="34" selection-end-line="250" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/puzzle_tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28598848">
-          <caret line="46" column="55" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.62741315">
+          <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
           <folding />
         </state>
       </provider>

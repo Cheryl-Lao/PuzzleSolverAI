@@ -32,9 +32,6 @@ def depth_first_solve(puzzle):
     >>> depth_first_solve(tester1).children[0].puzzle._from_word
     'cast'
 
-    >>> tester = GridPegSolitairePuzzle([[".", ".", "."], ["*", "*", "."]], {".", "*", "#"})
-    >>> depth_first_solve(tester).children[0].puzzle._marker
-    [[".", ".", "."], [".", ".", "*"]]
     """
 
     seen = set()
@@ -65,6 +62,12 @@ def depth_helper(puzzle, seen, parent = None):
     :param seen: set[str]
 
     :return: PuzzleNode | None
+
+    >>> tester = GridPegSolitairePuzzle([[".", ".", "."], ["*", "*", "."]], {".", "*", "#"})
+    >>> seen = set()
+    >>> print(depth_helper(tester, seen).puzzle)
+    . . .
+    . . *
     """
     # new_puzzle_node = PuzzleNode(puzzle)
     # seen.add(str(new_puzzle_node.puzzle))
@@ -87,22 +90,26 @@ def depth_helper(puzzle, seen, parent = None):
     #     # It should never get here so:
     #     print("For some reason it got to the last case in depth first search")
 
+# TODO YO IT'S BECAUSE WE'RE TAKING IN A PUZZLE THEN RETURNING A PUZZLENODE IN THE RECURSIVE CALLLLL..... wait no. that's not an issue
     new_node = PuzzleNode(puzzle, [], parent)
+
+    seen.add(str(puzzle))
+
     for ex in puzzle.extensions():
-        new_node.children.append(PuzzleNode(ex, [], new_node))
+        #print(str(ex), "jdkcjkukjsd")
+        if str(ex) not in seen:
+         #   print(str(ex), "lkjhgfgyhghj")
+            new_node.children.append(PuzzleNode(ex, [], new_node))
 
     if puzzle.is_solved():
             return PuzzleNode(puzzle, [], parent)
 
-    elif (not puzzle.fail_fast()) and puzzle.extensions():
-        for extension in puzzle.extensions():
-            possible_sol = depth_helper(extension, seen, new_node)
-            if str(extension) not in seen and possible_sol is not None and str(possible_sol) not in seen:
-                # possible_solution = depth_helper(extension, seen, new_node)
-                # if possible_solution is not None and \
-                #             str(possible_solution) not in seen:
-                #     return possible_solution
-                return depth_helper(extension, seen, new_node)
+    elif puzzle.fail_fast():
+        return None
+
+    for child in new_node.children:
+        if str(child.puzzle) not in seen:
+            return depth_helper(child.puzzle, seen, new_node)
 
     else:
         return None
@@ -145,7 +152,8 @@ def breadth_first_solve(puzzle):
                 # If there are extensions add children all at once to the queue
                 for extension in puzzle_node.puzzle.extensions():
                     new_node = PuzzleNode(extension, None, puzzle_node)
-                    to_check.append(new_node)
+                    if new_node not in seen:
+                        to_check.append(new_node)
             seen.append(puzzle_node)
 
     # If it gets to this line it means that there were no solutions found at all
