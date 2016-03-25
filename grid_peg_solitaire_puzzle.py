@@ -16,7 +16,7 @@ class GridPegSolitairePuzzle(Puzzle):
 
         @type marker: list[list[str]]
         @type marker_set: set[str]
-                          "#" for unused, "*" for peg, "." for empty
+
         """
         assert isinstance(marker, list)
         assert len(marker) > 0
@@ -25,14 +25,13 @@ class GridPegSolitairePuzzle(Puzzle):
         assert all([x == "*" or x == "." or x == "#" for x in marker_set])
         self._marker, self._marker_set = marker, marker_set
 
-    # TODO
     # implement __eq__, __str__ methods
     # __repr__ is up to you
 
-    # TODO
     # override extensions
     # legal extensions consist of all configurations that can be reached by
     # making a single jump from this configuration
+
     def extensions(self):
         """
         Return a list of legal GridPegSolitairePuzzle extensions from self
@@ -113,7 +112,8 @@ class GridPegSolitairePuzzle(Puzzle):
                 neighbour = copied.neighbour_at(origin, direction)
 
                 if neighbour is not None and neighbour[1] == "*":
-                    next_neighbour = copied.neighbour_at(neighbour[0],direction)
+                    next_neighbour = copied.neighbour_at(neighbour[0],
+                                                         direction)
 
                     if next_neighbour is not None and next_neighbour[1] == "*":
                         # Peg fills up the empty spot
@@ -121,9 +121,10 @@ class GridPegSolitairePuzzle(Puzzle):
                         # Peg that is skipped over is taken off
                         copied._marker[neighbour[0][1]][neighbour[0][0]] = "."
                         # Peg's original location is now empty
-                        copied._marker[next_neighbour[0][1]]\
-                            [next_neighbour[0][0]] = "."
+                        copied._marker[next_neighbour[0][1]][
+                            next_neighbour[0][0]] = "."
                         result.append(copied)
+
                 # Reset copied
                 copied = copy.deepcopy(self)
         return result
@@ -230,10 +231,8 @@ class GridPegSolitairePuzzle(Puzzle):
 
     def fail_fast(self):
         """
-
         Return whether or not a GridPegSolitairePuzzle is unsolvable
 
-        :return:
         :rtype: bool
 
         >>> grid5 = [['.', '.', '.'], ['*', '*', '.']]
@@ -281,7 +280,6 @@ class GridPegSolitairePuzzle(Puzzle):
         True
         """
 
-        # TODO
         # override is_solved
         # A configuration is solved when there is exactly one "*" left
         pegs = sum([x.count("*") for x in self._marker])
@@ -346,14 +344,14 @@ class GridPegSolitairePuzzle(Puzzle):
                    [".", "*", "*", "*", "*"],\
                    ["*", "#", ".", "*", "*"],\
                    ["*", ".", "*", "*", "*"]]
-        >>> pegitaire = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
+        >>> Lynn = GridPegSolitairePuzzle(grid, {"*", ".", "#"})
         >>> grid2= [["#", "*", "*", "*", "*"],\
                    ["*", "*", "*", ".", "*"],\
                    [".", "*", "*", "*", "*"],\
                    ["*", "#", ".", "*", "*"],\
                    ["*", ".", "*", "*", "*"]]
         >>> identical_twin = GridPegSolitairePuzzle(grid2, {"*", ".", "#"})
-        >>> pegitaire == identical_twin
+        >>> Lynn == identical_twin
         True
         >>> grid3= [["*", "*", "*", "*", "*"],\
                    ["*", "*", "*", "*", "*"],\
@@ -361,7 +359,7 @@ class GridPegSolitairePuzzle(Puzzle):
                    ["*", "*", "*", "*", "*"],\
                    ["*", "*", "*", "*", "*"]]
         >>> fraternal_twin = GridPegSolitairePuzzle(grid3,{"*", ".", "#"})
-        >>> pegitaire == fraternal_twin
+        >>> Lynn == fraternal_twin
         False
         """
 
@@ -393,7 +391,8 @@ class GridPegSolitairePuzzle(Puzzle):
         marker_string = str(self._marker)
         marker_set = str(self._marker_set)
 
-        return "GridPegSolitairePuzzle({}, {})".format(marker_string,marker_set)
+        return "GridPegSolitairePuzzle({}, {})".format(marker_string,
+                                                       marker_set)
 
 
 if __name__ == "__main__":

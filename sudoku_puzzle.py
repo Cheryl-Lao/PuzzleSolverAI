@@ -1,5 +1,6 @@
 from puzzle import Puzzle
 
+
 class SudokuPuzzle(Puzzle):
     """
     A sudoku puzzle that may be solved, unsolved, or even unsolvable.
@@ -187,7 +188,6 @@ class SudokuPuzzle(Puzzle):
         # In other words, if there is one open position where the symbols
         # already used in the same row, column, and subsquare exhaust the
         # symbols available, there is no point in continuing.
-        # TODO
 
         # check if grid is valid (no repeats in row/column/square)
         # look for empty spaces
@@ -215,39 +215,19 @@ class SudokuPuzzle(Puzzle):
 
         """
 
-        # Take the union of the things from row, col and square
-        possible = set()
-
-        original_set = self._symbol_set
-
-
         for i in range(len(self._symbols)):
 
             if self._symbols[i] == "*":
 
-                possible_row = original_set - self._row_set(i)
-
-                possible_col = original_set - self._column_set(i)
-
-                possible_subspace = original_set - self._subsquare_set(i)
-
-                possible = possible_row & possible_col & possible_subspace
+                possible = (self._symbol_set -
+                            (self._row_set(i) |
+                                self._column_set(i) |
+                                self._subsquare_set(i)))
 
                 if len(possible) == 0:
                     return True
 
-                for possible_sol in possible:
-                    copied = self._symbols[:]
-                    copied[i] = possible_sol
-                    new_sudoku_child = \
-                        SudokuPuzzle(self._n, copied, self._symbol_set)
-
-                    if new_sudoku_child.is_solved():
-                        # If even one of the children has children or is
-                        # solvable then it hasn't failed yet
-                        return False
-
-        return True
+        return False
 
     # some helper methods
     def _row_set(self, m):
@@ -302,7 +282,6 @@ class SudokuPuzzle(Puzzle):
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     s = SudokuPuzzle(9,
                      ["*", "*", "*", "7", "*", "8", "*", "1", "*",

@@ -3,7 +3,7 @@ Some functions for working with puzzles
 """
 from puzzle import Puzzle
 from collections import deque
-from grid_peg_solitaire_puzzle import *  # TODO REMOVE THESE IMPORTS AFTER TESTING
+from grid_peg_solitaire_puzzle import *
 from word_ladder_puzzle import *
 # set higher recursion limit
 # which is needed in PuzzleNode.__str__
@@ -12,7 +12,6 @@ import sys
 # resource.setrlimit(resource.RLIMIT_STACK, (2**29, -1))
 sys.setrecursionlimit(10**6)
 
-# TODO
 # implement depth_first_solve
 # do NOT change the type contract
 # you are welcome to create any helper functions
@@ -30,8 +29,13 @@ def depth_first_solve(puzzle):
 
     >>> tester1 = WordLadderPuzzle("cast", "vase", {"case", "cast", "vase"})
     >>> print(depth_first_solve(tester1))
-    'vase'
-
+    cast --> vase
+    <BLANKLINE>
+    case --> vase
+    <BLANKLINE>
+    vase --> vase
+    <BLANKLINE>
+    <BLANKLINE>
     """
 
     seen = set()
@@ -39,56 +43,63 @@ def depth_first_solve(puzzle):
     # of PuzzleNodes where the returned node and all of its children only
     # have one child, eventually leading to the solution
     node = PuzzleNode(puzzle)
-    solution = depth_helper(node, seen)
+    solution_ = depth_helper(node, seen)
     #
     # if solution is not None:
     #     while solution.parent:
     #         solution.parent.children = [solution]
     #         solution = solution.parent
 
-    return solution
+    return solution_
 
 
-def depth_helper(puzzleNode, seen):
+def depth_helper(puzzle_node, seen):
     """
-    :param puzzleNode: PuzzleNode
-    :param seen: set[str]
+    Return the root of a path to a solution to puzzle_node
 
+    :param puzzle_node: PuzzleNode
+    :param seen: set[str]
     :return: PuzzleNode | None
 
-    >>> tester = GridPegSolitairePuzzle([[".", ".", "."], ["*", "*", "."]], {".", "*", "#"})
+    >>> tester = GridPegSolitairePuzzle([[".", ".", "."], ["*", "*", "."]], \
+    {".", "*", "#"})
     >>> seen = set()
     >>> tester_node = PuzzleNode(tester)
     >>> print(depth_helper(tester_node, seen))
     . . .
+    * * .
+    <BLANKLINE>
+    . . .
     . . *
+    <BLANKLINE>
+    <BLANKLINE>
     """
 
-    seen.add(str(puzzleNode.puzzle))
+    seen.add(str(puzzle_node.puzzle))
 
-    if puzzleNode.puzzle.is_solved():
+    if puzzle_node.puzzle.is_solved():
         # print("solved!!")
-        return puzzleNode
+        return puzzle_node
 
-    elif puzzleNode.puzzle.fail_fast():
+    elif puzzle_node.puzzle.fail_fast():
         return None
 
-    for ex in puzzleNode.puzzle.extensions():
+    for ex in puzzle_node.puzzle.extensions():
 
         if str(ex) not in seen:
-            puzzleNode.children.append(PuzzleNode(ex, [], puzzleNode))
+            puzzle_node.children.append(PuzzleNode(ex, [], puzzle_node))
         seen.add(str(ex))
 
-    for child in puzzleNode.children:
+    for child in puzzle_node.children:
         solution_node = depth_helper(child, seen)
 
         if solution_node is not None:
-            # Going backwards in the linked list to find the root and disown children
+            # Going backwards in the linked list to find the root
+            # and disown children
             if solution_node.parent:
                 solution_node.parent.children = [solution_node]
 
             return solution_node.parent
-
     else:
         return None
 
@@ -102,6 +113,16 @@ def breadth_first_solve(puzzle):
     @type puzzle: Puzzle
     @rtype: PuzzleNode
 
+    >>> not_tester1 = WordLadderPuzzle("cast", "vase", {"case", "cast", "vase"})
+    >>> print(breadth_first_solve(not_tester1))
+    cast --> vase
+    <BLANKLINE>
+    case --> vase
+    <BLANKLINE>
+    vase --> vase
+    <BLANKLINE>
+    <BLANKLINE>
+    """
 
 # implement breadth_first_solve
 # do NOT change the type contract
@@ -109,8 +130,7 @@ def breadth_first_solve(puzzle):
 # you like
 # Hint: you may find a queue useful, that's why
 # we imported deque
-    """
-    # TODO
+
     new_puzzle_node = PuzzleNode(puzzle)
     to_check = deque()
     to_check.append(new_puzzle_node)
@@ -136,7 +156,7 @@ def breadth_first_solve(puzzle):
             if puzzle_node.puzzle.extensions():
                 # If there are extensions add children all at once to the queue
                 for extension in puzzle_node.puzzle.extensions():
-                    new_node = PuzzleNode(extension, None, puzzle_node)
+                    new_node = PuzzleNode(extension, [], puzzle_node)
                     puzzle_node.children.append(new_node)
 
                     if str(new_node.puzzle) not in seen:

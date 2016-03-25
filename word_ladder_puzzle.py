@@ -22,7 +22,6 @@ class WordLadderPuzzle(Puzzle):
         # set of characters to use for 1-character changes
         self._chars = "abcdefghijklmnopqrstuvwxyz"
 
-        # TODO
         # implement __eq__ and __str__
         # __repr__ is up to you
     def __eq__(self, other):
@@ -72,7 +71,8 @@ class WordLadderPuzzle(Puzzle):
 
     def __repr__(self):
         """
-        Return a representation of WordLadderPuzzle self that can be evaluate to produce another WordLadderPuzzle.
+        Return a representation of WordLadderPuzzle self that can be evaluate
+        to produce another WordLadderPuzzle.
 
         :type self: WordLadderPuzzle
         rtype: Str
@@ -85,7 +85,9 @@ class WordLadderPuzzle(Puzzle):
         """
 
         # You may need to change str(self._word_set) to repr(self._word_set)
-        result = "WordLadderPuzzle({}, {}, {})".format(self._from_word, self._to_word, self._word_set)
+        result = "WordLadderPuzzle({}, {}, {})".format(self._from_word,
+                                                       self._to_word,
+                                                       self._word_set)
         return result
 
     def extensions(self):
@@ -102,17 +104,15 @@ class WordLadderPuzzle(Puzzle):
         >>> to_word = 'save'
         >>> word_set = {'cost', 'case','cave','save'}
         >>> puzzle = WordLadderPuzzle(from_word, to_word, word_set)
-        >>> new_list = []
-        >>> new_list.append(WordLadderPuzzle('cost', to_word, word_set))
-        >>> new_list.append(WordLadderPuzzle('case', to_word, word_set))
+        >>> new_list = [WordLadderPuzzle('cost', to_word, word_set), \
+        WordLadderPuzzle('case', to_word, word_set)]
         >>> new_list == puzzle.extensions()
         True
         """
 
-        # TODO
-
         good_words = []
-        from_word, to_word, ws, chars = self._from_word, self._to_word, self._word_set, self._chars
+        from_word, to_word, ws, chars = self._from_word, self._to_word, \
+            self._word_set, self._chars
 
         if not self.is_solved():
             word_list = []
@@ -122,18 +122,16 @@ class WordLadderPuzzle(Puzzle):
                     word_list.append(from_word[:i] + q + from_word[i + 1:])
 
             for word in word_list:
-                if (word in ws) and (not word in good_words) and (word != from_word):
+                if (word in ws) and (word not in good_words) and \
+                        (word != from_word):
                     good_words.append(word)
 
         return [WordLadderPuzzle(q, to_word, ws) for q in good_words]
 
     def is_solved(self):
-            # TODO
-        # override is_solved
-        # this WordLadderPuzzle is solved when _from_word is the same as
-        # _to_word
         """
-        Return true if WordLadderPuzzle self is in a solved state.
+
+        Return whether or not WordLadderPuzzle self is in a solved state.
 
         :type self: WordLadderPuzzle
         :rtype: bool

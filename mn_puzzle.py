@@ -48,7 +48,7 @@ class MNPuzzle(Puzzle):
             return False
 
         for i in range(len(self.from_grid)):
-            for j in range (len(self.to_grid[i])):
+            for j in range(len(self.to_grid[i])):
                 if self.from_grid[i][j] != other.from_grid[i][j]:
                     return False
         return True
@@ -87,7 +87,9 @@ class MNPuzzle(Puzzle):
         :rtype: str
         """
 
-        result = "MNPuzzle(self, {}, {})".format(Puzzle.grid_string(self.from_grid), Puzzle.grid_string(self.to_grid))
+        result = "MNPuzzle(self, {}, {})".format(
+            self.grid_string(self.from_grid),
+            self.grid_string(self.to_grid))
 
         return result
 
@@ -163,6 +165,25 @@ class MNPuzzle(Puzzle):
 
         return self.from_grid == self.to_grid
 
+    def grid_string(self, grid):
+        """
+
+        Return a string representation of the given grid
+
+        @param MNPuzzle self: this MNPuzzle
+        @param tuple[tuple[str]] grid: current configuration
+        @rtype: str
+        """
+
+        result = ""
+        for row in grid:
+            for element in row:
+                result += str(element)
+                result += " "
+            result += "\n"
+
+        return result
+
     def swap_direction(self, origin, direction):
         """
         Return an MN puzzle where the object at origin is switched with the
@@ -221,7 +242,11 @@ class MNPuzzle(Puzzle):
                 origin_column -= 1
                 found = True
         if found:
-            starter_grid[origin[1]][origin[0]] , starter_grid[origin_row][origin_column]= starter_grid[origin_row][origin_column], starter_grid[origin[1]][origin[0]]
+            starter_grid[origin[1]][origin[0]], \
+                starter_grid[origin_row][origin_column] = \
+                starter_grid[origin_row][origin_column], \
+                starter_grid[origin[1]][origin[0]]
+
             starter_grid = turn_to_tup(starter_grid)
             return MNPuzzle(starter_grid, self.to_grid)
 
@@ -243,8 +268,8 @@ class MNPuzzle(Puzzle):
         [0, 0]
         """
 
-        for i in range (self.n):
-            for j in range (self.m):
+        for i in range(self.n):
+            for j in range(self.m):
                 if self.from_grid[i][j] == obj:
                     return [j, i]
 
@@ -256,27 +281,27 @@ def turn_to_list(tup):
 
     Return a possibly nested list from a possibly nested tuple given.
 
-    :type tup: tuple[int, int]
+    :type tup: tuple(int, int) | Any
     :rtype: list[int, int]
 
     >>> t = ((1, 2),(3, 4))
-    >>> y = turn_to_list(t)
-    >>> print(y)
+    >>> cheryl = turn_to_list(t)
+    >>> print(cheryl)
     [[1, 2], [3, 4]]
     """
 
-    if isinstance(tup,tuple):
+    if isinstance(tup, tuple):
         return [turn_to_list(t) for t in tup]
     else:
         return tup
 
 
-def turn_to_tup(l):
+def turn_to_tup(list_):
     """
     Return a possibly nested tuple from a possibly nested list given.
 
-    :type l: list[int, int]
-    :rtype: tuple[int, int]
+    :type list_: list[list[int]] | Any
+    :rtype: tuple(int, int)
 
     >>> y = [[1, 2], [3, 4]]
     >>> t = turn_to_tup(y)
@@ -284,10 +309,10 @@ def turn_to_tup(l):
     ((1, 2), (3, 4))
     """
 
-    if isinstance(l, list):
-        return tuple(turn_to_tup(i) for i in l)
+    if isinstance(list_, list):
+        return tuple(turn_to_tup(i) for i in list_)
     else:
-        return l
+        return list_
 
 if __name__ == "__main__":
     import doctest
